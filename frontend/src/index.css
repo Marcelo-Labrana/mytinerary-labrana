@@ -1,0 +1,102 @@
+/*NAVBAR*/
+
+
+.container-logo{
+    max-width:min-content !important;
+    margin: 0 !important;
+    align-self: flex-start;
+}
+
+
+.container-patch{
+    max-width: none;
+    min-width: 55vw;
+}
+
+.collapse-patch{
+    max-width:min-content !important;
+}
+
+
+.navbar-dropdown{
+    justify-self: center;
+    align-self: center;
+}
+
+.dropdown-menu.show{
+    --theWidth : 30px;
+    max-width: var(--theWidth) !important;
+    background-color: rgba(39, 38, 38, 0.77);
+    margin:0 !important;
+    position:absolute !important;
+    transform: translate(calc(var(--theWidth)*-3), 7px);
+    border-radius: 0% 0% 5px 5px!important;
+}
+
+.dropdown-item{
+    color:rgba(255,255,255,.77) !important;
+
+}
+.dropdown-menu.show>a:hover{
+    background-color: rgba(39, 38, 38, 0.77) !important;
+}
+
+
+.navbar-custom {
+    background: rgba(39, 38, 38, 0.77);
+
+
+}
+
+.profile-pic{
+    max-width: 44px;
+}
+
+/*HERO*/
+
+.hero{
+    height: 100vh;
+    width: 100vw;
+    position:absolute;
+    top:0;
+    z-index: -1;
+    display:flex;
+    flex-direction: column;
+}
+
+.hero-background{
+    z-index: -2;
+    margin: 0;
+    padding:0;
+    width:100vw;
+    height: 100vh;
+    object-fit: cover;
+}
+
+@media only screen and (max-width: 768px) {
+    .hero-background {
+        object-position: 10% 50%;
+    }
+    .profile-pic{
+        min-width: 33px;
+        min-height: 33px;
+    }
+    .collapse-patch{
+        max-width: none;
+        width:100vw;
+    }
+    .container-patch{
+        max-width: none;
+        min-width: 77vw;
+        margin:0 !important;
+        padding:0 !important;
+        
+    }
+    .dropdown-menu.show{
+        --theWidth : 30px;
+        margin:0 !important;
+        max-width: var(--theWidth) !important;
+        position:absolute !important;
+        transform: translate(calc(var(--theWidth)*-3.3), 7px);
+    }
+  }

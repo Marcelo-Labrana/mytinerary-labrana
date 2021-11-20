@@ -1,13 +1,12 @@
 import React from 'react'
+import Hero from "../components/Hero"
 
 class Home extends React.Component{
     render(){
-        const foto = require('../assets/nigelmoon.jpg');
-
+        //const foto = require('../assets/nigelmoon.jpg');
+        
         return (<div>
-            <h1>Un título random</h1>
-            <img src='./assets/frock.jpg' alt='frogs with glock' />
-            <img src={foto.default} alt="cursed nigel" />
+            <Hero/>
         </div>)
     }
 }
