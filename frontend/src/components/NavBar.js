@@ -13,7 +13,7 @@ function NavBar() {
     return (
         <>
             <Navbar sticky="top" className="navbar-custom" variant="dark" expand="md">
-                <Container className='align-content-md-center d-flex sm-m-1'>
+                <Container className='align-content-md-center d-flex sm-m-1 justify-content-md-start'>
                     <Container className='container-logo'>
                         <Navbar.Brand href="#home">
                             <img
@@ -27,9 +27,9 @@ function NavBar() {
                     </Container>
                        
                         <Navbar.Toggle aria-controls="basic-navbar-nav"/>
-                        <Navbar.Collapse id="basic-navbar-nav" className="collapse-patch">
-                            <Nav className="me-auto d-flex justify-content-end">
-                                <Container className="d-flex justify-self-end justify-content-between md-justify-content-around container-patch">
+                        <Navbar.Collapse id="basic-navbar-nav">
+                            <Nav className="me-auto d-flex another-patch">
+                                <Container className="d-flex justify-content-between md-justify-content-around container-patch">
                                     <Nav.Link href="#home" className='align-self-center p-0'>Home</Nav.Link>
                                     <Nav.Link href="#cities" className="align-self-center p-0">Cities</Nav.Link>
                                     <div className="justify-self-center ml-auto">

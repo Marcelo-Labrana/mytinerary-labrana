@@ -6,7 +6,7 @@ export default class HeroSlogan extends React.Component {
         return (
             <div className="tittle-container">
                 <h3 className="text-hero slogan">
-                    <Flip bottom cascade>
+                    <Flip bottom>
                     "Find your perfect trip, designed by insiders who know and love their cities!"
                     </Flip>
                 </h3>
