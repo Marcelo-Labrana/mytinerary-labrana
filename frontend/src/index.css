@@ -199,11 +199,11 @@ a{
     transition-duration: 1700ms;
 }
 
-.hero-button>a:hover{
+a:hover>.hero-button{
     color:rgb(39, 38, 38)!important;
 }
 
-.hero-button:hover>a>.button-items>.plane {
+a>.hero-button:hover>.button-items>.plane {
     filter: invert(0%);
 }
 
