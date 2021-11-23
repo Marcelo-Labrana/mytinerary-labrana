@@ -79,10 +79,11 @@ body{
     max-width: 44px;
 }
 
-a.nav-link{
+a{
+    text-decoration: none !important;
     color:rgba(170,170,170,1) !important;
 }
-a.nav-link:hover{
+a:hover{
     color:rgba(255,255,255,1)!important;
 }
 
@@ -247,6 +248,17 @@ a.nav-link:hover{
 }
 
 /*CARROUSEL*/
+.ttl-crsl-cont{
+    min-width: 100vw;
+    min-height: 13vh;
+    margin: 10vh 0 2vh 0;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(39, 38, 38, 0.77) ;
+    color:rgba(170,170,170,1)
+}
+
 .row{
     justify-content: center;
     margin-top: 2rem !important;
@@ -256,6 +268,7 @@ a.nav-link:hover{
 }
 .container-crsl{
     display:flex;
+    flex-direction: column;
     justify-content: center;
     background: rgb(170,170,170);
     background: radial-gradient(circle, rgba(170,170,170,1) 0%, rgba(39,38,38,1) 100%);
@@ -273,10 +286,14 @@ a.nav-link:hover{
     color: rgba(170, 170, 170) !important;
 }
 .carousel-indicators{
-    transform: translateY(2vh);
+    transform: translateY(-3vh);
 }
 .card{
     border: none !important;;
+}
+
+.carousel-item{
+    margin-bottom: 15vh;
 }
 
 /*FOOTER*/
@@ -374,3 +391,26 @@ a.nav-link:hover{
     }
   }
 
+/*404*/
+.cucu{
+    display:flex;
+    min-width:100vw !important;
+    min-height: 100vh !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background:rgb(170,170,170);
+    background: radial-gradient(circle, rgba(170,170,170,1) 0%, rgba(39,38,38,1) 100%);
+}
+.wrapper{
+    display:flex;
+    min-width:min-content;
+    min-height: min-content;
+    color: rgba(255,255,255,1);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background:rgba(39, 38, 38, 0.77);
+    padding: 5vh;
+    border-radius: 5px;
+}

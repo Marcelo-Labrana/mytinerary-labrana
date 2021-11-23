@@ -1,21 +1,25 @@
 import React from 'react'
 import Home from './pages/Home.js'
-import NavBar from './components/NavBar.js'
-import Footer from './components/Footer.js'
+import Cities from './pages/Cities.js'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
 
-class App extends React.Component{
+class App extends React.Component {
   //constructor(){}
-  render(){
+  render() {
     return (
-    <div>
-      <NavBar/>
-      <Home />
-      <Footer/>
-      
-    </div>
-      )
-    };
+      <Router>
+        
+        <Routes>
+          <Route path="/" element={<Home/>}/>
+          
+          <Route path="/cities" element={<Cities/>}/>
+
+        </Routes>
+      </Router>
+
+    )
+  };
 }
 
 /*const App = () => {

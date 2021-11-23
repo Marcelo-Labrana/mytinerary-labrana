@@ -70,41 +70,47 @@ export default class Carrousel extends React.Component {
 
     render() {
         return (
-            <div className="container-crsl">
-                <Carousel interval={20000} pause="hover">
+            <>
 
-                    {
-                        this.cities.map(packs => {
-                            return (
-                                <Carousel.Item>
+                <div className="container-crsl">
+                    <div className="ttl-crsl-cont">
+                        <h2>Popular MyTineraries</h2>
+                    </div>
+                    <Carousel interval={20000} pause="hover">
 
-                                    <Container>
-                                        <Row>
-                                            {
-                                                packs.map((pack) => {
-                                                    
-                                                    return (
-                                                        
-                                                        <Col xs={12} sm={5}>
-                                                            <Card className="custom-card">
-                                                                <Card.Img variant="top" src={pack.img} />
-                                                                <Card.Body>
-                                                                    <Card.Title>{pack.city}</Card.Title>
-                                                                </Card.Body>
-                                                            </Card>
-                                                        </Col>
-                                                        
-                                                    )
-                                                })
-                                            }
-                                        </Row>
-                                    </Container>
-                                </Carousel.Item>
-                            )
-                        })
-                    }
-                </Carousel>
-            </div>
+                        {
+                            this.cities.map(packs => {
+                                return (
+                                    <Carousel.Item>
+
+                                        <Container>
+                                            <Row>
+                                                {
+                                                    packs.map((pack) => {
+
+                                                        return (
+
+                                                            <Col xs={12} sm={5}>
+                                                                <Card className="custom-card">
+                                                                    <Card.Img variant="top" src={pack.img} />
+                                                                    <Card.Body>
+                                                                        <Card.Title>{pack.city}</Card.Title>
+                                                                    </Card.Body>
+                                                                </Card>
+                                                            </Col>
+
+                                                        )
+                                                    })
+                                                }
+                                            </Row>
+                                        </Container>
+                                    </Carousel.Item>
+                                )
+                            })
+                        }
+                    </Carousel>
+                </div>
+            </>
         )
     }
 }
