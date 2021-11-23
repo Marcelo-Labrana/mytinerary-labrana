@@ -1,7 +1,7 @@
 import React from 'react'
 import Home from './pages/Home.js'
 import NavBar from './components/NavBar.js'
-
+import Footer from './components/Footer.js'
 
 
 class App extends React.Component{
@@ -11,6 +11,7 @@ class App extends React.Component{
     <div>
       <NavBar/>
       <Home />
+      <Footer/>
       
     </div>
       )
