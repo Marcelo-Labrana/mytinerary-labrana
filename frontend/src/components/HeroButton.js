@@ -1,13 +1,19 @@
-import React from 'react';
 import Reveal from 'react-reveal/Reveal';
 import Pulse from 'react-reveal/Pulse';
+import {Link} from 'react-router-dom';
+    
 
-export default class HeroSlogan extends React.Component {
-    render() {
+export default function HeroButton() {
+    
+    
+    
+        
+
         return (
             <div className="tittle-container justify-self-end">
                 <Reveal bottom>
                     <button className="hero-button">
+                        <Link to="/cities">
                         <div className="button-items">
                             <img src="./assets/take-off.png"  alt="airplane taking off" className="plane"/>                            
                             <div className="button-text">
@@ -17,10 +23,12 @@ export default class HeroSlogan extends React.Component {
                                 </Pulse>    
                             </div>
                             
-                        </div> 
+                        </div>
+                        </Link> 
                     </button>
                 </Reveal>
             </div>
         );
-    }
+    
 }
+

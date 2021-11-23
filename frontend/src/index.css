@@ -193,10 +193,17 @@ h3>div {
 
 .hero-button:hover {
     background-color: rgba(255, 255, 255, 0.77);
-    color: rgb(39, 38, 38);
 }
 
-.hero-button:hover>.button-items>.plane {
+a{
+    transition-duration: 1700ms;
+}
+
+.hero-button>a:hover{
+    color:rgb(39, 38, 38)!important;
+}
+
+.hero-button:hover>a>.button-items>.plane {
     filter: invert(0%);
 }
 
