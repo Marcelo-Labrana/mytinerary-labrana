@@ -76,7 +76,7 @@ export default class Carrousel extends React.Component {
                     <div className="ttl-crsl-cont">
                         <h2>Popular MyTineraries</h2>
                     </div>
-                    <Carousel interval={20000} pause="hover">
+                    <Carousel interval={5000} pause="hover">
 
                         {
                             this.cities.map(packs => {

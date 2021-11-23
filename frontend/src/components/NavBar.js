@@ -1,6 +1,6 @@
 import React from 'react'
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
-import { BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 /*import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import Container from 'react-bootstrap/Container'
