@@ -81,7 +81,7 @@ export default class Carrousel extends React.Component {
                         {
                             this.cities.map(packs => {
                                 return (
-                                    <Carousel.Item>
+                                    <Carousel.Item key={this.cities.indexOf(packs).toString()}>
 
                                         <Container>
                                             <Row>
@@ -90,7 +90,7 @@ export default class Carrousel extends React.Component {
 
                                                         return (
 
-                                                            <Col xs={12} sm={5}>
+                                                            <Col xs={12} sm={5} key={pack.city}>
                                                                 <Card className="custom-card">
                                                                     <Card.Img variant="top" src={pack.img} />
                                                                     <Card.Body>

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
 import {Link} from 'react-router-dom'
+
 /*import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import Container from 'react-bootstrap/Container'
@@ -11,6 +12,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function NavBar() {
+    
     return (
             <Navbar sticky="top" className="navbar-custom" variant="dark" expand="md">
                 <Container className='align-content-md-center d-flex sm-m-1 justify-content-md-start'>
@@ -30,8 +32,8 @@ function NavBar() {
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="me-auto d-flex another-patch">
                                 <Container className="d-flex justify-content-between md-justify-content-around container-patch">
-                                    <Nav.Link className='align-self-center p-0'><Link to="/">Home</Link></Nav.Link>
-                                    <Nav.Link className='align-self-center p-0'><Link to="/cities">Cities</Link></Nav.Link>
+                                    <Nav.Link as={Link} to="/" className='align-self-center p-0'>Home</Nav.Link>
+                                    <Nav.Link as={Link} to="/cities" className='align-self-center p-0'>Cities</Nav.Link>
                                     <div className="justify-self-center ml-auto">
                                         <NavDropdown
                                             title={
