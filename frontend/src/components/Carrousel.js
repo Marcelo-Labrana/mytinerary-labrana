@@ -17,9 +17,9 @@ export default function Carrousel () {
     const [cities, setCities] = useState([])
 
     useEffect(()=>{
-        fetch("http://localhost:4000/api/cities")
+        fetch("http://localhost:4000/api/cities12")
         .then(res=>res.json())
-        .then(data=>setCities(data.response.cities))
+        .then(data=>setCities(data.response.cities12))
         .catch(err=>console.error(err.message))
     },[])
         return (

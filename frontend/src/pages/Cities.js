@@ -1,14 +1,21 @@
 import React from 'react'
+import SearchBar from '../components/SearchBar.js'
+import ShowCities from '../components/ShowCities.js'
+import NavBar from '../components/NavBar.js'
+import Footer from '../components/Footer.js'
 
 export default class Cities extends React.Component {
     render() {
         return (
             <>
                 <div className="cucu">
+                    <NavBar/>
+                    <SearchBar/>
+
                     <div className="wrapper">
-                        <h1>ERROR 404</h1>
-                        <h2>The requested URL /cities was not found on this server.</h2>
+                        <ShowCities/>
                     </div>
+                    <Footer/>
                 </div>
             </>
         )
