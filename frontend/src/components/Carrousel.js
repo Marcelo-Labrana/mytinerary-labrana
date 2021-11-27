@@ -4,71 +4,24 @@ import Card from 'react-bootstrap/Card'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import {useEffect, useState} from 'react'
 
 
 
 
 
-export default class Carrousel extends React.Component {
+export default function Carrousel () {
 
-    cities = [
-        [
-            {
-                city: "Barcelona",
-                img: "./assets/barcelona.jpg"
-            },
-            {
-                city: "London",
-                img: "./assets/london.jpg"
-            },
-            {
-                city: "Sidney",
-                img: "./assets/sidney.jpg"
-            },
-            {
-                city: "Milan",
-                img: "./assets/milan.jpg"
-            }
-        ],
-        [
-            {
-                city: "Bilbao",
-                img: "./assets/bilbao.jpg"
-            },
-            {
-                city: "Paris",
-                img: "./assets/paris.jpg"
-            },
-            {
-                city: "Rome",
-                img: "./assets/rome.jpg"
-            },
-            {
-                city: "Berlin",
-                img: "./assets/berlin.jpg"
-            }
-        ],
-        [
-            {
-                city: "Toulouse",
-                img: "./assets/toulouse.jpg"
-            },
-            {
-                city: "San Sebastian",
-                img: "./assets/san sebastian.jpg"
-            },
-            {
-                city: "Ibiza",
-                img: "./assets/ibiza.jpg"
-            },
-            {
-                city: "Istambul",
-                img: "./assets/istambul.jpg"
-            }
-        ]
-    ]
+   
 
-    render() {
+    const [cities, setCities] = useState([])
+
+    useEffect(()=>{
+        fetch("http://localhost:4000/api/cities")
+        .then(res=>res.json())
+        .then(data=>setCities(data.response.cities))
+        .catch(err=>console.error(err.message))
+    },[])
         return (
             <>
 
@@ -79,9 +32,9 @@ export default class Carrousel extends React.Component {
                     <Carousel interval={5000} pause="false">
 
                         {
-                            this.cities.map(packs => {
+                            cities.map(packs => {
                                 return (
-                                    <Carousel.Item key={this.cities.indexOf(packs).toString()}>
+                                    <Carousel.Item key={cities.indexOf(packs).toString()}>
 
                                         <Container>
                                             <Row>
@@ -112,5 +65,5 @@ export default class Carrousel extends React.Component {
                 </div>
             </>
         )
-    }
+    
 }

@@ -1,8 +1,5 @@
-const express = require("express")
-
-const app = express()
-
 const cities = [
+
     [
         {
             city: "Barcelona",
@@ -59,13 +56,20 @@ const cities = [
     ]
 ]
 
+
+const express = require("express")
+const cors = require("cors")
+
+const app = express()
+app.use(cors())
+
 app.get("/pruebas/datos",(req,res)=>{
     console.log("Me llegó un pedido GET")
     res.json({respuesta:"ola keace"})
 })
 
 app.get("/api/cities", (req, res)=>{
-    res.json({respone:{cities:cities}})
+    res.json({response:{cities:cities}})
 })
 
 app.listen(4000, ()=>{console.log("Server is listening on port 4000")})
