@@ -39,7 +39,7 @@ export default function Carrousel() {
 
         })
         if(searchResults.length){setCities(searchResults)}
-        else{setCities([])}
+        else{setCities([{id:0}])}
         
     }
 
@@ -52,9 +52,11 @@ export default function Carrousel() {
                         placeholder="What's your destination?"
                         onChange={handleChange} />
                 </div>
+                
                 {
 
                     cities.map(city => {
+                        if(city.id){
                             return (
                                 <Col xs={12} key={city.id} className="d-flex justify-content-center">
                                     <Card as={Link} to={`/cities/${city.city}`} className="custom-card-cities">
@@ -64,7 +66,17 @@ export default function Carrousel() {
                                         </Card.Body>
                                     </Card>
                                 </Col>
-                            )
+                            )}
+                        return(
+                            <Col xs={12} key={city.id} className="d-flex justify-content-center">
+                                    <Card className="custom-card-cities">
+                                        <Card.Img className="img-city" variant="top" src="/assets/notFound.jpg" />
+                                        <Card.Body>
+                                            <Card.Title>Sorry, the city you're searching is not in the database.</Card.Title>
+                                        </Card.Body>
+                                    </Card>
+                                </Col>
+                        )
                             })
 
                 }
