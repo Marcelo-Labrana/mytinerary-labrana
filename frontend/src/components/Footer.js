@@ -8,7 +8,7 @@ export default class Footer extends React.Component{
         return(
             <footer className="footer-container">
                 <div className="footer-nav">
-                <Nav.Link href="#home">Home</Nav.Link>
+                <Nav.Link as={Link} to="/#home">Home</Nav.Link>
                 <Nav.Link as={Link} to="/cities">Cities</Nav.Link>
                 </div>
                 <div className="txt-inl"><h4 className="my">My</h4><h4 className="tinerary">Tinerary</h4></div>

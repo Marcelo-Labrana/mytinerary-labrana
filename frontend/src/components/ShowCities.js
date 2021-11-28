@@ -2,6 +2,7 @@ import React from 'react'
 import Card from 'react-bootstrap/Card'
 import Col from 'react-bootstrap/Col'
 import { useEffect, useState } from 'react'
+import {Link} from 'react-router-dom'
 
 export default function Carrousel() {
 
@@ -20,8 +21,8 @@ export default function Carrousel() {
             {
                 cities.map(city => {
                     return (
-                        <Col xs={12} key={city.city}>
-                            <Card className="custom-card-cities">
+                        <Col xs={12} key={city.id}>
+                            <Card as={Link} to={`/cities/${city.city}`} className="custom-card-cities">
                                 <Card.Img className="img-cities" variant="top" src={city.img} />
                                 <Card.Body>
                                     <Card.Title>{city.city}, {city.country}</Card.Title>

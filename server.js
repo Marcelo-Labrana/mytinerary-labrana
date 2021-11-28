@@ -74,79 +74,94 @@ const cities = [
         {
             city: "Barcelona",
             country: "Spain",
-            img: "./assets/barcelona.jpg"
+            img: "/assets/barcelona.jpg",
+            id:1
         },
         {
             city: "London",
             country: "United Kingdom",
-            img: "./assets/london.jpg"
+            img: "/assets/london.jpg",
+            id:2
         },
         {
             city: "Sidney",
             country: "Australia",
-            img: "./assets/sidney.jpg"
+            img: "/assets/sidney.jpg",
+            id:3
         },
         {
             city: "Milan",
             country: "Italy",
-            img: "./assets/milan.jpg"
+            img: "/assets/milan.jpg",
+            id:4
         },
     
         {
             city: "Bilbao",
             country: "Spain",
-            img: "./assets/bilbao.jpg"
+            img: "/assets/bilbao.jpg",
+            id:5
         },
         {
             city: "Paris",
             country: "France",
-            img: "./assets/paris.jpg"
+            img: "/assets/paris.jpg",
+            id:6
         },
         {
             city: "Rome",
             country: "Italy",
-            img: "./assets/rome.jpg"
+            img: "/assets/rome.jpg",
+            id:7
         },
         {
             city: "Berlin",
             country: "Germany",
-            img: "./assets/berlin.jpg"
+            img: "/assets/berlin.jpg",
+            id:8
         },
     
         {
             city: "Toulouse",
             country: "France",
-            img: "./assets/toulouse.jpg"
+            img: "/assets/toulouse.jpg",
+            id:9
         },
         {
             city: "San Sebastian",
             country: "Spain",
-            img: "./assets/san sebastian.jpg"
+            img: "/assets/san sebastian.jpg",
+            id:10
         },
         {
             city: "Ibiza",
             country: "Spain",
-            img: "./assets/ibiza.jpg"
+            img: "/assets/ibiza.jpg",
+            id:11
         },
         {
             city: "Istanbul",
             country: "Turkey",
-            img: "./assets/istambul.jpg"
+            img: "/assets/istambul.jpg",
+            id:12
         },
         {
             city: "Ulaanbaatar",
             country: "Mongolia",
-            img: "./assets/ulaanbaatar.jpg"
+            img: "/assets/ulaanbaatar.jpg",
+            id:13
         },
         {
             city: "Tokyo",
             country: "Japan",
-            img: "./assets/tokyo.jpg"
+            img: "/assets/tokyo.jpg",
+            id:14
         },
         {
             city: "Beijing",
             country: "China",
-            img: "./assets/beijing.jpg"
+            img: "/assets/beijing.jpg",
+            id:15
         }
     
 ]

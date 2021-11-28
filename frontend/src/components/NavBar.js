@@ -19,7 +19,7 @@ function NavBar() {
                     <Container className='container-logo'>
                         <Navbar.Brand>
                             <Link to="/"><img
-                                src="./assets/logo.png"
+                                src="/assets/logo.png"
                                 width="70"
                                 height="50"
                                 className="d-inline-block align-top"
@@ -37,7 +37,7 @@ function NavBar() {
                                     <div className="justify-self-center ml-auto">
                                         <NavDropdown
                                             title={
-                                                <img src="./assets/default-user.png" alt="default user" className="profile-pic" />
+                                                <img src="/assets/default-user.png" alt="default user" className="profile-pic" />
                                                 
                                             } id="basic-nav-dropdown">
                                             <NavDropdown.Item href="#">Login</NavDropdown.Item>
