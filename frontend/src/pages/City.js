@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card, Col } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useLayoutEffect } from 'react'
 import NavBar from '../components/NavBar.js'
 import Footer from '../components/Footer.js'
 import {Link} from 'react-router-dom'
@@ -20,7 +20,9 @@ const City = () => {
 
     }, [cityName.city])
 
-
+    useLayoutEffect(() => {
+        window.scrollTo(0, 0)
+    });
 
     return (
         <>
