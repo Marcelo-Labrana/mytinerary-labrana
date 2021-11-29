@@ -34,8 +34,8 @@ export default function Carrousel() {
 
     const filter = searchValue => {
         var searchResults = citiesStatic.filter(searchCity => {
-            if (searchCity.city.toLowerCase().startsWith(searchValue.toLowerCase()) ||
-                searchCity.country.toLowerCase().startsWith(searchValue.toLowerCase())) {
+            if (searchCity.city.toLowerCase().startsWith(searchValue.toLowerCase().trim()) ||
+                searchCity.country.toLowerCase().startsWith(searchValue.toLowerCase().trim())) {
                 return searchCity
             } else { 
                 return null }
