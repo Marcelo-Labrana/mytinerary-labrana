@@ -389,7 +389,7 @@ a>.hero-button:hover>.button-items>.plane {
 }
 
 .img-cities{
-    min-height: 55vh !important;
+    min-height: 33vh !important;
 }
 
 .img-cities:hover{
@@ -400,7 +400,7 @@ a>.hero-button:hover>.button-items>.plane {
     background-color: rgba(39, 38, 38, 0.77);
     border-radius: 1px;
     width: 100vw;
-    margin: 7vh 0 3vh 0;
+    margin: 3vh 0 3vh 0;
     padding: 2vh 0 2vh 0;
 }
 .search-tittle{
@@ -413,10 +413,14 @@ a>.hero-button:hover>.button-items>.plane {
     align-self: center !important;
 }
 
-/*CITY*/
-.img-city{
-    min-height: 66vh !important;
+.img-not-found{
+    min-height: 44vh !important;
     object-fit:fill;
+}
+/*CITY*/
+
+.img-city{
+    min-height: 33vh !important;
 }
 .construction{
     height: 44vh;

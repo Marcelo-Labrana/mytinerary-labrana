@@ -31,8 +31,8 @@ const City = () => {
                 <div className="wrapper">
                     {
 
-                        <Col xs={12}>
-                            <Card className="custom-card-cities">
+                        <Col xs={12} className="d-flex justify-content-center">
+                            <Card className="custom-card-cities align-self-center justify-self-center">
                                 <Card.Img className="img-city" variant="top" src={city.img} />
                                 <Card.Body>
                                     <Card.Title>{city.city}, {city.country}</Card.Title>

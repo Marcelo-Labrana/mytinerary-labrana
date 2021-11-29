@@ -73,9 +73,9 @@ export default function Carrousel() {
                         return(
                             <Col xs={12} key={city._id} className="d-flex justify-content-center">
                                     <Card className="custom-card-cities">
-                                        <Card.Img className="img-city" variant="top" src="/assets/notFound.jpg" />
+                                        <Card.Img className="img-not-found" variant="top" src="/assets/notFound.jpg" />
                                         <Card.Body>
-                                            <Card.Title>Sorry, the city you're searching is not in the database.</Card.Title>
+                                            <Card.Title>Sorry, the city you're searching for is not in the database.</Card.Title>
                                         </Card.Body>
                                     </Card>
                                 </Col>
