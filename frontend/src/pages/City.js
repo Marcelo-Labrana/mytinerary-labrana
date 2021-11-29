@@ -15,7 +15,7 @@ const City = () => {
     useEffect(() => {
         fetch("http://localhost:4000/api/cities")
             .then(res => res.json())
-            .then(data => setCity(data.response.cities.find(cityFind => cityFind.city === cityName.city)))
+            .then(data => setCity(data.response.find(cityFind => cityFind.city === cityName.city)))
             .catch(err => console.error(err.message))
 
     }, [cityName.city])

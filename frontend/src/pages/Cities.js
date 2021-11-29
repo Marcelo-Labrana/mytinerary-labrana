@@ -9,8 +9,6 @@ export default class Cities extends React.Component {
             <>
                 <div className="cucu">
                     <NavBar/>
-                    
-
                     <div className="wrapper">
                         <ShowCities/>
                     </div>

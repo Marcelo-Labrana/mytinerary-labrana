@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 import Card from 'react-bootstrap/Card'
 import Col from 'react-bootstrap/Col'
 import { useEffect, useState } from 'react'
@@ -15,14 +16,16 @@ export default function Carrousel() {
 
 
     useEffect(() => {
-        fetch("http://localhost:4000/api/cities")
-            .then(res => res.json())
-            .then(data => {
-                setCities(data.response.cities)
-                setCitiesStatic(data.response.cities)
+        axios.get("http://localhost:4000/api/cities")
+            .then(res => {
+                console.log(res)
+                setCities(res.data.response)
+                setCitiesStatic(res.data.response)
             })
-            .catch(err => console.error(err.message))
+            
     }, [])
+
+    
 
     const handleChange = e => {
         setSearch(e.target.value)
@@ -39,7 +42,7 @@ export default function Carrousel() {
 
         })
         if(searchResults.length){setCities(searchResults)}
-        else{setCities([{id:0}])}
+        else{setCities([{_id:0}])}
         
     }
 
@@ -56,9 +59,9 @@ export default function Carrousel() {
                 {
 
                     cities.map(city => {
-                        if(city.id){
+                        if(city._id){
                             return (
-                                <Col xs={12} key={city.id} className="d-flex justify-content-center">
+                                <Col xs={12} key={city._id} className="d-flex justify-content-center">
                                     <Card as={Link} to={`/cities/${city.city}`} className="custom-card-cities">
                                         <Card.Img className="img-cities" variant="top" src={city.img} />
                                         <Card.Body>
@@ -68,7 +71,7 @@ export default function Carrousel() {
                                 </Col>
                             )}
                         return(
-                            <Col xs={12} key={city.id} className="d-flex justify-content-center">
+                            <Col xs={12} key={city._id} className="d-flex justify-content-center">
                                     <Card className="custom-card-cities">
                                         <Card.Img className="img-city" variant="top" src="/assets/notFound.jpg" />
                                         <Card.Body>
