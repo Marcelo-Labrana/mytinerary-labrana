@@ -28,20 +28,23 @@ export default function Carrousel() {
     
 
     const handleChange = e => {
-        setSearch(e.target.value)
-        filter(e.target.value)
+        const searchValue = e.target.value
+        setSearch(searchValue)
+        //filter(searchValue)
+        setCities(citiesStatic.filter(searchCity => {
+            return(
+                searchCity.city.toLowerCase().startsWith(searchValue.toLowerCase().trim()) 
+                || searchCity.country.toLowerCase().startsWith(searchValue.toLowerCase().trim()) ) 
+            })
+        )
     }
 
-    const filter = searchValue => {
+    /*const filter = (searchValue) => {
         var searchResults = citiesStatic.filter(searchCity => {
         return(searchCity.city.toLowerCase().startsWith(searchValue.toLowerCase().trim()) || searchCity.country.toLowerCase().startsWith(searchValue.toLowerCase().trim()) ) 
-            
-            
         })
         setCities(searchResults)
-        
-        
-    }
+    }*/
 
     return (
         <>
