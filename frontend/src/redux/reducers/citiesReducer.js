@@ -2,7 +2,9 @@ const initialState = {
 
 }
 
-const citiesReducer = (state, action) => {
+const citiesReducer = (state = initialState, action) => {
 
-    
+    return initialState;
 }
+
+export default citiesReducer

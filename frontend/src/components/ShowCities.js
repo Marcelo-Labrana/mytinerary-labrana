@@ -34,15 +34,12 @@ export default function Carrousel() {
 
     const filter = searchValue => {
         var searchResults = citiesStatic.filter(searchCity => {
-            if (searchCity.city.toLowerCase().startsWith(searchValue.toLowerCase().trim()) ||
-                searchCity.country.toLowerCase().startsWith(searchValue.toLowerCase().trim())) {
-                return searchCity
-            } else { 
-                return null }
-
+        return(searchCity.city.toLowerCase().startsWith(searchValue.toLowerCase().trim()) || searchCity.country.toLowerCase().startsWith(searchValue.toLowerCase().trim()) ) 
+            
+            
         })
-        if(searchResults.length){setCities(searchResults)}
-        else{setCities([{_id:0}])}
+        setCities(searchResults)
+        
         
     }
 
@@ -57,9 +54,8 @@ export default function Carrousel() {
                 </div>
                 
                 {
-
+                    cities.length ?
                     cities.map(city => {
-                        if(city._id){
                             return (
                                 <Col xs={12} key={city._id} className="d-flex justify-content-center">
                                     <Card as={Link} to={`/cities/${city.city}`} className="custom-card-cities">
@@ -70,8 +66,9 @@ export default function Carrousel() {
                                     </Card>
                                 </Col>
                             )}
-                        return(
-                            <Col xs={12} key={city._id} className="d-flex justify-content-center">
+                        ):
+                            
+                            <Col xs={12} className="d-flex justify-content-center">
                                     <Card className="custom-card-cities">
                                         <Card.Img className="img-not-found" variant="top" src="/assets/notFound.jpg" />
                                         <Card.Body>
@@ -79,8 +76,8 @@ export default function Carrousel() {
                                         </Card.Body>
                                     </Card>
                                 </Col>
-                        )
-                            })
+                        
+    
 
                 }
             </div>
