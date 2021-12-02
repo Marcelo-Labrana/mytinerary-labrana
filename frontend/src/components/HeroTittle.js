@@ -1,5 +1,4 @@
 import React from 'react';
-//import Jump from 'react-reveal/Jump';
 import Bounce from 'react-reveal/Bounce';
 
 export default class HeroTittle extends React.Component {

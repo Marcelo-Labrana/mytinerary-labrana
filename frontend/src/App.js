@@ -28,14 +28,4 @@ const App = () =>  {
   
 }
 
-/*const App = () => {
-  return (<h1>Mientras tanto</h1>)
-} */
-
-/*function App() {
-  return (
-    <h1>Mientras tanto</h1>
-  );
-}*/
-
 export default App;

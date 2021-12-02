@@ -1,7 +1,3 @@
-
-
-
-
 const router = require('express').Router();
 const citiesControllers = require('../controllers/citiesControllers')
 const cities12Controllers = require('../controllers/cities12Controllers')
@@ -14,8 +10,6 @@ router.route('/cities/:id')
 .get(citiesControllers.cityByID)
 .delete(citiesControllers.deleteCity)
 .put(citiesControllers.updateCity)
-
-
 
 
 router.route('/cities12')
