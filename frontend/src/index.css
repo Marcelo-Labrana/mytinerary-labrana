@@ -369,8 +369,8 @@ a>.hero-button:hover>.button-items>.plane {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: rgb(170, 170, 170);
-    background: radial-gradient(circle, rgba(170, 170, 170, 1) 0%, rgba(39, 38, 38, 1) 100%);
+    background: rgb(0,0,0);
+background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(140,140,140,1) 43%, rgba(111,111,111,1) 50%, rgba(38,39,39,1) 77%, rgba(140,140,140,1) 100%);
 }
 
 .wrapper {
@@ -417,6 +417,14 @@ a>.hero-button:hover>.button-items>.plane {
     min-height: 44vh !important;
     object-fit:fill;
 }
+.searchBar{
+    width: 55vw;
+    border-radius: 10px;
+    text-align: center;
+    border-width: 2px;
+    border-color:rgba(170, 170, 170, 0.77);
+}
+
 /*CITY*/
 
 .img-city{

@@ -51,7 +51,7 @@ export default function Carrousel() {
             <div className="d-flex flex-column align-items-center justify-items-center align-content-center justify-content-center">
                 <div className="search-tittle-container"><h3 className="d-flex justify-content-center search-tittle">Search for your City: </h3></div>
                 <div>
-                    <input value={search}
+                    <input className="searchBar" value={search}
                         placeholder="What's your destination?"
                         onChange={handleChange} />
                 </div>
