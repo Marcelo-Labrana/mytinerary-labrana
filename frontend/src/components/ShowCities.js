@@ -1,28 +1,22 @@
 import React from 'react'
-import axios from 'axios'
 import Card from 'react-bootstrap/Card'
 import Col from 'react-bootstrap/Col'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+//import { connect } from 'mongoose'
+import {connect } from 'react-redux'
+import citiesActions from '../redux/actions/citiesActions'
 
 
-export default function Carrousel() {
+function Carrousel(props) {
 
-
-
-    const [cities, setCities] = useState([])
-    const [citiesStatic, setCitiesStatic] = useState([])
     const [search, setSearch] = useState("")
-
+    //console.log(props)
+    //const {cities, aux, fetchCities, filterCities} = props
 
     useEffect(() => {
-        axios.get("http://localhost:4000/api/cities")
-            .then(res => {
-                console.log(res)
-                setCities(res.data.response)
-                setCitiesStatic(res.data.response)
-            })
-            
+        //console.log(cities)    
+        props.fetchCities()
     }, [])
 
     
@@ -30,21 +24,11 @@ export default function Carrousel() {
     const handleChange = e => {
         const searchValue = e.target.value
         setSearch(searchValue)
-        //filter(searchValue)
-        setCities(citiesStatic.filter(searchCity => {
-            return(
-                searchCity.city.toLowerCase().startsWith(searchValue.toLowerCase().trim()) 
-                || searchCity.country.toLowerCase().startsWith(searchValue.toLowerCase().trim()) ) 
-            })
-        )
+        props.filterCities(props.cities, searchValue)
+        
     }
 
-    /*const filter = (searchValue) => {
-        var searchResults = citiesStatic.filter(searchCity => {
-        return(searchCity.city.toLowerCase().startsWith(searchValue.toLowerCase().trim()) || searchCity.country.toLowerCase().startsWith(searchValue.toLowerCase().trim()) ) 
-        })
-        setCities(searchResults)
-    }*/
+  
 
     return (
         <>
@@ -57,8 +41,8 @@ export default function Carrousel() {
                 </div>
                 
                 {
-                    cities.length ?
-                    cities.map(city => {
+                    props.aux.length ?
+                    props.aux.map(city => {
                             return (
                                 <Col xs={12} key={city._id} className="d-flex justify-content-center">
                                     <Card as={Link} to={`/cities/${city.city}`} className="custom-card-cities">
@@ -87,3 +71,17 @@ export default function Carrousel() {
         </>
     )
 }
+
+const mapDispatchToProps = {
+    fetchCities: citiesActions.fetchCities,
+    filterCities: citiesActions.filterCities
+}
+const mapStateToProps = (state)=>{
+    
+    return {
+        cities: state.citiesReducer.cities,
+        aux: state.citiesReducer.aux
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps )(Carrousel)
