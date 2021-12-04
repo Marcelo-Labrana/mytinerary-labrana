@@ -15,8 +15,8 @@ function Carrousel(props) {
     //const {cities, aux, fetchCities, filterCities} = props
 
     useEffect(() => {
-        //console.log(cities)    
         props.fetchCities()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     
