@@ -45,7 +45,7 @@ function Carrousel(props) {
                     props.aux.map(city => {
                             return (
                                 <Col xs={12} key={city._id} className="d-flex justify-content-center">
-                                    <Card as={Link} to={`/cities/${city.city}`} className="custom-card-cities">
+                                    <Card as={Link} to={`/cities/${city._id}`} className="custom-card-cities">
                                         <Card.Img className="img-cities" variant="top" src={city.img} />
                                         <Card.Body>
                                             <Card.Title>{city.city}, {city.country}</Card.Title>

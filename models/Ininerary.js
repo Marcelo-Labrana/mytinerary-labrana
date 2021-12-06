@@ -13,9 +13,8 @@ const itinerarySchema = new mongoose.Schema({
     ],
     comments: {type: [{body: String, user: String}],required:false},
 
-    city: [
-        {type: mongoose.Types.ObjectId, ref: 'city'}
-    ]
+    city: {type: mongoose.Types.ObjectId, ref: 'city'}
+    
 
 })
 

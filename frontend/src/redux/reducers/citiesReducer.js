@@ -1,6 +1,7 @@
 const initialState = {
      cities : [],
-     aux : []
+     aux : [],
+     city : []
 
 }
 
@@ -16,6 +17,11 @@ const citiesReducer = (state = initialState, action) => {
             return{
                 ...state,
                 aux: action.payload
+            }
+        case 'fetchCity':
+            return{
+                ...state,
+                city: action.payload
             }
         default:
             return state

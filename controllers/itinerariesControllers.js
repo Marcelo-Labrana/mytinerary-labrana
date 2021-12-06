@@ -39,8 +39,18 @@ const itinerariesControllers = {
         let response
 
         try {
-            response = await Itinerary.findOneAndUpdate({ _id: id }, { user, price, duration, likes, hashtags,comments, city }, { new: true })
+            response = await Itinerary.findOneAndUpdate({ _id: id }, { user, price, duration, likes, hashtags, comments, city }, { new: true })
         } catch (err) { console.error(err) }
+        res.json(response)
+    },
+    consultItineraries: async (req, res) => {
+        const cityId = req.params.cityId
+        let response
+            try {
+                response = await Itinerary.find({ city: cityId })
+            } catch (err) { 
+                response = "no-itineraries"
+                console.error(err) }
         res.json(response)
     }
 

@@ -17,13 +17,13 @@ const citiesControllers = {
         .then(response=>res.json({response}))
         .catch(err=>console.error(err))
     },
-    cityByID: (req,res)=>{
-        console.log(req.params)
+    cityByID: async(req,res)=>{
         const id = req.params.id
-
-        City.findOne({_id:id})
-        .then(response=>res.json({response}))
-        .catch(err=>console.error(err))
+        let response
+        try{response = await City.findOne({_id:id})}
+        catch(err){console.error(err)}
+        res.json(response)
+        
        
     },
     updateCity: (req,res)=>{

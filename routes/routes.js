@@ -21,6 +21,9 @@ router.route('/itineraries/:id')
 .delete(itinerariesControllers.deleteItinerary)
 .put(itinerariesControllers.updateItinerary)
 
+router.route('/itinerary/:cityId')
+.get(itinerariesControllers.consultItineraries)
+
 router.route('/cities12')
 .get(cities12Controllers.getCities12)
 
