@@ -33,7 +33,7 @@ function NavBar() {
                                                 
                                             } id="basic-nav-dropdown">
                                             <NavDropdown.Item href="#">Login</NavDropdown.Item>
-                                            <NavDropdown.Item href="#">Sign Up</NavDropdown.Item>
+                                            <NavDropdown.Item as={Link} to="/sign_up">Sign Up</NavDropdown.Item>
                                         </NavDropdown>
                                     </div>
                                 </Container>
