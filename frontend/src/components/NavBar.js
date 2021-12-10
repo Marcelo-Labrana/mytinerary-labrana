@@ -32,7 +32,7 @@ function NavBar() {
                                                 <img src="/assets/default-user.png" alt="default user" className="profile-pic" />
                                                 
                                             } id="basic-nav-dropdown">
-                                            <NavDropdown.Item href="#">Login</NavDropdown.Item>
+                                            <NavDropdown.Item as={Link} to="/sign_in">Sign In</NavDropdown.Item>
                                             <NavDropdown.Item as={Link} to="/sign_up">Sign Up</NavDropdown.Item>
                                         </NavDropdown>
                                     </div>

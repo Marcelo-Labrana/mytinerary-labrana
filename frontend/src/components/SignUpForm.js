@@ -1,17 +1,25 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { OverlayTrigger, Tooltip } from 'react-bootstrap'
 
 const SignUpForm = () => {
 
     const [pwShown, setPwShown] = useState(false);
-    
+
+    const [countries, setCountries] = useState([])
+
+    useEffect(() => {
+        fetch("https://restcountries.com/v3.1/all")
+            .then(res => res.json())
+            .then(data => setCountries(data))
+            .catch(err => console.error(err.message))
+    }, [])
 
     const toggleVisibility = () => {
         setPwShown(!pwShown);
     }
 
-    
+
     const renderTooltip = (props) => (
         <Tooltip id="button-tooltip" {...props}>
             Show/Hide Password
@@ -40,14 +48,27 @@ const SignUpForm = () => {
                                     overlay={renderTooltip}
                                 >
 
-                                <label htmlFor="eye" />
+                                    <label htmlFor="eye" />
                                 </OverlayTrigger>
                             </div>
                             <input type={pwShown ? "text" : "password"} id="pw" name="pw" placeholder={pwShown ? "password" : "••••••••"} />
 
                         </li>
                         <li><label htmlFor="img">IMAGE URL</label>
-                            <input type="text" id="lname" name="img" placeholder="www.image-url.com/example.png" /></li>
+                            <input type="text" id="image" name="img" placeholder="www.image-url.com/example.png" /></li>
+                        <li>
+                            <label htmlFor="countrylist">COUNTRY</label>
+                            <select id="countries" name="countrylist">
+                            <option value="none" selected disabled hidden>Select a Country</option>
+                                {countries.map(country => {
+                                    return (
+                                        <option key={country.cca2} id={country.name.common}>{country.name.common}</option>
+                                    )
+                                }
+                                )
+                                }
+                            </select>
+                        </li>
                         <li><button type="submit"><b>SIGN UP</b></button></li>
                     </ul>
                 </fieldset>
