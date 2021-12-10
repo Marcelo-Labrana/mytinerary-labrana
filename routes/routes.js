@@ -2,6 +2,7 @@ const router = require('express').Router();
 const citiesControllers = require('../controllers/citiesControllers')
 const cities12Controllers = require('../controllers/cities12Controllers')
 const itinerariesControllers = require('../controllers/itinerariesControllers')
+const usersControllers = require('../controllers/usersControllers')
 
 router.route('/cities')
 .get(citiesControllers.getCities)
@@ -23,6 +24,16 @@ router.route('/itineraries/:id')
 
 router.route('/itinerary/:cityId')
 .get(itinerariesControllers.consultItineraries)
+
+router.route('/users')
+.get(usersControllers.getUsers)
+.post(usersControllers.addUser)
+
+router.route('/users/:id')
+.get(usersControllers.getUserByID)
+.delete(usersControllers.deleteUser)
+.put(usersControllers.updateUser)
+
 
 router.route('/cities12')
 .get(cities12Controllers.getCities12)
