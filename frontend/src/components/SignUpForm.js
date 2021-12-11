@@ -31,8 +31,7 @@ const SignUpForm = (props) => {
             .then(data => setCountries(data))
             .catch(err => console.error(err.message))
         }
-        console.log(props.users)
-        if(!props.users.length>0){props.fetchUsers()}
+        
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -114,8 +113,6 @@ const SignUpForm = (props) => {
 }
 
 const mapDispatchToProps = {
-    fetchUsers: usersActions.fetchUsers,
-    fetchUser: usersActions.fetchUser,
     addUser: usersActions.addUser
 }
 const mapStateToProps = (state)=>{

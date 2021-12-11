@@ -1,14 +1,41 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { OverlayTrigger, Tooltip } from 'react-bootstrap'
+import usersActions from '../redux/actions/usersActions'
+import {connect } from 'react-redux'
 
-const SignInForm = () => {
+const SignInForm = (props) => {
 
     const [pwShown, setPwShown] = useState(false);
+    const inputEmail = useRef()
+    const inputPassword = useRef()
 
+    useEffect(() => {
+        console.log(props.user)
+        
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [props.user])
 
     const toggleVisibility = () => {
         setPwShown(!pwShown);
+    }
+    
+    const handleSubmit = async (email, password)=>{
+        const user = await props.signUser(email,password)
+        
+        setTimeout(()=>console.log(props.user),3000);
+        
+        /*if (user.error) {
+            user.error.map(e=> alert(e.message))
+        }*/
+    }
+    const handleSubmitInputs = (e) => {
+        e.preventDefault()
+        console.log(inputEmail.current.value, inputPassword.current.value)
+        handleSubmit(inputEmail.current.value, inputPassword.current.value)
+        inputEmail.current.value = ''
+        inputPassword.current.value = ''
+        
     }
 
 
@@ -19,12 +46,12 @@ const SignInForm = () => {
 
     return (
         <>
-            <form className="form">
+            <form className="form" onSubmit={handleSubmitInputs}>
                 <fieldset>
                     <ul className="outer">
                         <legend className="legend-sign">We're <b>glad</b> to see you <b>traveler</b></legend>
                         <li><label htmlFor="email">EMAIL</label>
-                            <input type="email" id="email" name="email" placeholder="example@domain.com" /></li>
+                            <input type="email" id="email" name="email" ref={inputEmail} placeholder="example@domain.com" /></li>
                         <li>
                             <div className="password">
                                 <label htmlFor="pw">PASSWORD</label>
@@ -39,7 +66,7 @@ const SignInForm = () => {
                                     <label htmlFor="eye" />
                                 </OverlayTrigger>
                             </div>
-                            <input type={pwShown ? "text" : "password"} id="pw" name="pw" placeholder={pwShown ? "password" : "••••••••"} />
+                            <input type={pwShown ? "text" : "password"} id="pw" name="pw" ref={inputPassword} placeholder={pwShown ? "password" : "••••••••"} />
 
                         </li>
                         
@@ -55,4 +82,16 @@ const SignInForm = () => {
 
 }
 
-export default SignInForm
+const mapDispatchToProps = {
+    signUser : usersActions.signUser
+    
+}
+const mapStateToProps = (state)=>{
+    
+    return {
+        users: state.usersReducer.users,
+        user: state.usersReducer.user
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps )(SignInForm)

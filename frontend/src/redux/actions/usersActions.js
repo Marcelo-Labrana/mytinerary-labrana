@@ -26,6 +26,17 @@ const usersActions = {
                 dispatch({type: 'addUser', payload:user})
             }catch(error){console.error(error)}
         }
+    },
+    signUser: (email, password)=>{
+        return async(dispatch,getState)=>{
+            try{
+                console.log(email, password)
+                const signedUser = await axios.post('http://localhost:4000/api/user',{email, password})
+                console.log(signedUser.data)
+                dispatch({type: 'signUser', payload:signedUser.data})
+            
+            }catch(error){console.error(error)}
+        }
     }
     
 

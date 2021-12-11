@@ -29,6 +29,10 @@ router.route('/users')
 .get(usersControllers.getUsers)
 .post(usersControllers.addUser)
 
+router.route('/user')
+.get(usersControllers.getUsers)
+.post(usersControllers.signUser)
+
 router.route('/users/:id')
 .get(usersControllers.getUserByID)
 .delete(usersControllers.deleteUser)

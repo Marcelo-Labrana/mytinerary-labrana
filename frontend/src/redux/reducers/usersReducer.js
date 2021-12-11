@@ -21,6 +21,11 @@ const usersReducer = (state = initialState, action) => {
                 users: action.payload
 
             }
+        case 'signUser':
+            return{
+                ...state,
+                user: action.payload
+            }
        default:
            return state
    }
