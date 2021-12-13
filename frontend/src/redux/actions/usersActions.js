@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { Alert } from 'react-bootstrap'
 
 const usersActions = {
     
@@ -23,7 +24,10 @@ const usersActions = {
         return async(dispatch, getState)=>{
             try{
                 const user = await axios.post('http://localhost:4000/api/users',{email, password, fname, lname, img, country})
-                dispatch({type: 'addUser', payload:user})
+                
+                if(user.data.success && !user.data.error){dispatch({type: 'addUser', payload:user})}
+                else{return {errors: user.data.error}}
+                
             }catch(error){console.error(error)}
         }
     },

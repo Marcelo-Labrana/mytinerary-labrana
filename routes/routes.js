@@ -3,6 +3,7 @@ const citiesControllers = require('../controllers/citiesControllers')
 const cities12Controllers = require('../controllers/cities12Controllers')
 const itinerariesControllers = require('../controllers/itinerariesControllers')
 const usersControllers = require('../controllers/usersControllers')
+const validator = require('../config/validator.js')
 
 router.route('/cities')
 .get(citiesControllers.getCities)
@@ -27,9 +28,9 @@ router.route('/itinerary/:cityId')
 
 router.route('/users')
 .get(usersControllers.getUsers)
-.post(usersControllers.addUser)
+.post(validator,usersControllers.addUser)
 
-router.route('/user')
+router.route('/users/sign_in')
 .get(usersControllers.getUsers)
 .post(usersControllers.signUser)
 

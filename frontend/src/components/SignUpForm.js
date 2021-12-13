@@ -18,9 +18,9 @@ const SignUpForm = (props) => {
 
     const handleSubmit = async (fname, lname, email, password, img, country)=>{
         const errors = await props.addUser(email,password,fname,lname,img,country)
-        /*if (errors.errores) {
-            errores.errores.map(e=> alert(e.message))
-        }*/
+        if (errors) {
+            errors.errors.map(e=> alert(e.message))
+        }
     }
 
 
@@ -56,6 +56,9 @@ const SignUpForm = (props) => {
         inputCountry.current.value = ''
     }
 
+    const nameRegex= "^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$"
+    const imgRegex = '(https?:\/\/.*\.(?:png|jpg))'
+
     return (
         <>
             <form className="form" onSubmit={handleSubmitInputs}>
@@ -63,11 +66,11 @@ const SignUpForm = (props) => {
                     <ul className="outer">
                         <legend className="legend-sign">Your <b>adventure</b> begins here</legend>
                         <li><label htmlFor="fname">FIRST NAME</label>
-                            <input type="text" id="fname" ref={inputFName} name="fname" placeholder="John" autoComplete="off"/></li>
+                            <input type="text" id="fname" ref={inputFName} name="fname" placeholder="John" autoComplete="off" required pattern={nameRegex}/></li>
                         <li><label htmlFor="lname">LAST NAME</label>
-                            <input type="text" id="lname" ref={inputLName} name="lname" placeholder="Smith" autoComplete="off"/></li>
+                            <input type="text" id="lname" ref={inputLName} name="lname" placeholder="Smith" autoComplete="off" required pattern={nameRegex}/></li>
                         <li><label htmlFor="email">EMAIL</label>
-                            <input type="email" id="email" ref={inputEmail} name="email" placeholder="example@domain.com" /></li>
+                            <input type="email" id="email" ref={inputEmail} name="email" placeholder="example@domain.com"  required/></li>
                         <li>
                             <div className="password">
                                 <label>PASSWORD</label>
@@ -82,15 +85,15 @@ const SignUpForm = (props) => {
                                     <label htmlFor="eye" />
                                 </OverlayTrigger>
                             </div>
-                            <input type={pwShown ? "text" : "password"} id="pw" ref={inputPassword} name="pw" placeholder={pwShown ? "password" : "••••••••"} autoComplete="off"/>
+                            <input type={pwShown ? "text" : "password"} id="pw" ref={inputPassword} name="pw" placeholder={pwShown ? "password" : "••••••••"} autoComplete="off" required minLength={"6"} maxLength={"18"}/>
 
                         </li>
                         <li><label htmlFor="img">IMAGE URL</label>
-                            <input type="text" id="image" ref={inputImg} name="img" placeholder="www.image-url.com/example.png" autoComplete="off"/></li>
+                            <input type="text" id="image" ref={inputImg} name="img" placeholder="www.image-url.com/example.png" autoComplete="off" required pattern={imgRegex}/></li>
                         <li>
                             <label htmlFor="countrylist">COUNTRY</label>
-                            <select id="countries" ref={inputCountry} name="countrylist">
-                                <option value="none" selected disabled hidden>Select a Country</option>
+                            <select id="countries" ref={inputCountry} name="countrylist" required>
+                                <option value="" selected disabled hidden>Select a Country</option>
                                 {countries.map(country => {
                                     return (
                                         <option key={country.cca2} id={country.name.common}>{country.name.common}</option>

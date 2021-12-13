@@ -1,5 +1,8 @@
 const User = require('../models/User')
 const bcrypt = require("bcryptjs")
+const joi = require("joi")
+
+
 
 const usersControllers = {
     getUsers: async (req, res) => {
@@ -11,36 +14,45 @@ const usersControllers = {
         }
         res.json(response)
     },
-    addUser: async (req, res) => {
-        const {fname, lname, email, password, img, country} = req.body
+    addUser: async (req, res, next) => {
+
+        const { fname, lname, email, password, img, country } = req.body
         const hashedPassword = bcrypt.hashSync(password)
-        const newUser = new User({fname,lname,email,password:hashedPassword,img,country})
+        const newUser = new User({ fname, lname, email, password: hashedPassword, img, country })
         try {
-            let repeatedUser = await User.findOne({email:email})
-            if(repeatedUser) throw new Error 
+            let repeatedUser = await User.findOne({ email: email })
+            if (repeatedUser) {
+                res.json({ success: false, error: [{message: "Email is already being used"}] })
+                throw new Error
+            }
             await newUser.save()
-            res.json({success:true, response: newUser, error: null})
-        } catch (error) { 
-            console.error(error) 
-            res.json({success: false, response: error.message})
+            res.json({ success: true, response: newUser, error: null })
+        } catch (error) {
+            console.error(error)
+            res.json({ success: false, response: error.message })
         }
-        
+
     },
-    signUser: async (req, res)=>{
+    signUser: async (req, res) => {
         console.log(req.body)
-        const {email, password} = req.body
-        
-        try{
-            let savedUser = await User.findOne({email:email})
-            
-            if (!savedUser) throw new Error("Incorrect email and/or password")
+        const { email, password } = req.body
+
+        try {
+            let savedUser = await User.findOne({ email: email })
+
+            if (!savedUser) {
+                res.json({ success: false, error: [{message: "Incorrect email and/or password"}] })
+                throw new Error("Incorrect email and/or password")
+            }
 
             let match = bcrypt.compareSync(password, savedUser.password)
-            console.log(match)
-            if (!match) throw new Error ("Incorrect email and/or password")
-            res.json({success:true, response: {fname: savedUser.fname}, error:null})
-        }catch(error){
-            res.json({success:false, response:error.message, error:error})
+            if (!match) {
+                res.json({ success: false, error: [{message: "Incorrect email and/or password"}] })
+                throw new Error("Incorrect email and/or password")
+            }
+            res.json({ success: true, response: { fname: savedUser.fname }, error: null })
+        } catch (error) {
+            res.json({ success: false, response: error.message })
         }
     },
 
