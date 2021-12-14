@@ -7,7 +7,7 @@ function NavBar() {
 
     const signed = localStorage.getItem('token')
 
-    console.log(signed)
+    
     const signOut = () => {
         localStorage.clear();
         window.location.reload();

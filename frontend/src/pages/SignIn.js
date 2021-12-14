@@ -2,7 +2,7 @@ import React from 'react'
 import NavBar from '../components/NavBar.js'
 import Footer from '../components/Footer.js'
 import SignInForm from '../components/SignInForm.js'
-import Error404 from '../pages/Error404'
+
 
 export default class SignIn extends React.Component {
 
