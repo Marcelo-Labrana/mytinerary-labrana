@@ -58,7 +58,7 @@ const usersControllers = {
                 throw new Error("Incorrect email and/or password")
             }
             const token = jwt.sign({...savedUser}, process.env.SECRET_KEY)
-            //console.log(token)
+            
             res.json({ success: true, response: { token, fname: savedUser.fname, img: savedUser.img }, error: null })
         } catch (error) {
             console.log(error)

@@ -41,7 +41,7 @@ const validator = (req, res, next) => {
 
     const validation = schema.validate(req.body, { abortEarly: false })
     //Investigar opciones de .validate
-    //console.log(validation.error.details)
+    
     if(validation.error){
        return res.json({success: false, response: validation.error.details, error: validation.error.details})
     }

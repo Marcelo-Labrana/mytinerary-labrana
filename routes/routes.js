@@ -43,5 +43,4 @@ router.route('/users/:id')
 router.route('/cities12')
 .get(cities12Controllers.getCities12)
 
-
 module.exports = router

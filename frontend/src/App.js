@@ -30,8 +30,7 @@ const App = () => {
           </>
         )}
 
-        {/*<Route path="/sign_up" element={<SignUp />} />
-        <Route path="/sign_in" element={<SignIn />} />*/}
+        
 
         <Route path="*" element={<Error404 />} />
 

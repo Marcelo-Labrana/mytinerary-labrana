@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
     country: {type:String,required:true},
     google: {type:Boolean, default:false}
 })
-//type: Number
+
 
 const User = mongoose.model('user',userSchema)
 
