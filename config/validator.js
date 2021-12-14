@@ -26,17 +26,17 @@ const validator = (req, res, next) => {
             'any.required':'Email field is required'
         }),
 
-        password: joi.string().required().trim().min(6).max(18).messages({
+        password: joi.string().required().trim().min(6).messages({
             'string.empty':'Password field must be filled',
             'string.min': 'Password must be at least 6 characters long',
             'string.max': 'Password can only contain up to 18 characters',
             'any.required':'Password is required'
         }),
-        img: joi.string().required().trim().pattern(new RegExp('(https?:\/\/.*\.(?:png|jpg))')).messages({
-            'string.empty':'Image field must be filled',
-            "string.pattern.base":"Image URL must be valid (must start with 'https:' and end with '.png' or '.jpg')"
+        img: joi.string().required().trim().messages({
+            'string.empty':'Image field must be filled'
         }),
-        country: joi.string().required().invalid('').messages({'string.empty':'Country field must be selected'})
+        country: joi.string().required().invalid('').messages({'string.empty':'Country field must be selected'}),
+        google : joi.boolean()
     })
 
     const validation = schema.validate(req.body, { abortEarly: false })

@@ -18,13 +18,18 @@ const usersReducer = (state = initialState, action) => {
         case 'addUser':
             return{
                 ...state,
-                users: action.payload
+                user: action.payload
+                
 
             }
         case 'signUser':
             return{
                 ...state,
                 user: action.payload
+            }
+        case 'logOut':
+            return{
+                ...initialState
             }
        default:
            return state

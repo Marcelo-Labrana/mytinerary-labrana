@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema({
     lname: {type:String,required:true},
     img: {type:String,required:true},
     country: {type:String,required:true},
+    google: {type:Boolean, default:false}
 })
 //type: Number
 

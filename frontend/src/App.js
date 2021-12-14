@@ -8,28 +8,38 @@ import SignIn from './pages/SignIn.js'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
 
-const App = () =>  {
-  
-  
-  
-    return (
-      <Router>
-        
-        <Routes>
-          <Route path="/" element={<Home/>}/>
-          
-          <Route path="/cities" element={<Cities/>}/>
-          <Route path="/cities/:city" element={<City/>}/>
-          <Route path="/sign_up" element={<SignUp/>}/>
-          <Route path="/sign_in" element={<SignIn/>}/>
-          
-          <Route path="*" element={<Error404/>}/>
+const App = () => {
 
-        </Routes>
-      </Router>
 
-    )
-  
+
+  return (
+    <Router>
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+
+        <Route path="/cities" element={<Cities />} />
+        <Route path="/cities/:city" element={<City />} />
+
+        {localStorage.getItem('token') ? (
+          <Route path="*" element={<Home />} />
+        ) : (
+          <>
+            <Route path="/sign_up" element={<SignUp />} />
+            <Route path="/sign_in" element={<SignIn />} />
+          </>
+        )}
+
+        {/*<Route path="/sign_up" element={<SignUp />} />
+        <Route path="/sign_in" element={<SignIn />} />*/}
+
+        <Route path="*" element={<Error404 />} />
+
+      </Routes>
+    </Router>
+
+  )
+
 }
 
 export default App;
