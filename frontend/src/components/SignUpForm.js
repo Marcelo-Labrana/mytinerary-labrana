@@ -26,7 +26,7 @@ const SignUpForm = (props) => {
             
         } else {
             alert("Account created successfully")
-            window.location.reload();
+            //window.location.reload();
         }
     }
 
@@ -62,7 +62,7 @@ const SignUpForm = (props) => {
              )
         .catch(()=>{
             alert("Account created successfully")
-            window.location.reload();
+            //window.location.reload();
         })    
             /*if (errores) {
                 console.log(errores)
@@ -152,7 +152,7 @@ const SignUpForm = (props) => {
                         <li><button type="submit" value={"submit"}><b>SIGN UP</b></button></li>
                         <GoogleLogin
                             clientId="625222718840-psku1behfs4a6u9v7ilond5j7h6693ka.apps.googleusercontent.com"
-                            buttonText="Sign in with Google"
+                            buttonText="Sign up with Google"
                             onSuccess={responseGoogle}
                             onFailure={responseGoogle}
                             cookiePolicy={'single_host_origin'}

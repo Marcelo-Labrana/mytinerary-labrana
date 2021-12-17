@@ -13,9 +13,9 @@ const SignInForm = (props) => {
     const inputPassword = useRef()
 
     useEffect(() => {
-        //console.log(props.user)
+        console.log(props.user)
         
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        
     }, [props.user])
 
     const responseGoogle = (response) => {
@@ -30,7 +30,7 @@ const SignInForm = (props) => {
             google:true
         }
         props.signUser(googleUser.email, googleUser.password, googleUser.google)
-        .then(res=>window.location.reload())
+        .then(res=>console.log(res))
         .catch(error=>console.error(error))
         
       }
@@ -40,16 +40,18 @@ const SignInForm = (props) => {
     }
     
     const handleSubmit = async (email, password)=>{
+        
+        if(!email||!password){alert("Please, enter user and password to sign in")}
         const errors = await props.signUser(email,password,false)
         
         if (errors) {
             errors.errors.map(e=> alert(e.message))
-        }else{window.location.reload();}
+        }//else{window.location.reload();}
     }
     const handleSubmitInputs = (e) => {
         e.preventDefault()
         //console.log(inputEmail.current.value, inputPassword.current.value)
-        handleSubmit(inputEmail.current.value, inputPassword.current.value,false)
+        handleSubmit(inputEmail.current.value, inputPassword.current.value)
         inputEmail.current.value = ''
         inputPassword.current.value = ''
         
@@ -68,7 +70,7 @@ const SignInForm = (props) => {
                     <ul className="outer">
                         <legend className="legend-sign">We're <b>glad</b> to see you <b>traveler</b></legend>
                         <li><label htmlFor="email">EMAIL</label>
-                            <input type="email" id="email" name="email" ref={inputEmail} placeholder="example@domain.com" /></li>
+                            <input type="email" id="email" name="email" ref={inputEmail} placeholder="example@domain.com" required/></li>
                         <li>
                             <div className="password">
                                 <label htmlFor="pw">PASSWORD</label>
@@ -83,7 +85,7 @@ const SignInForm = (props) => {
                                     <label htmlFor="eye" />
                                 </OverlayTrigger>
                             </div>
-                            <input type={pwShown ? "text" : "password"} id="pw" name="pw" ref={inputPassword} placeholder={pwShown ? "password" : "••••••••"} />
+                            <input type={pwShown ? "text" : "password"} id="pw" name="pw" ref={inputPassword} placeholder={pwShown ? "password" : "••••••••"} required/>
 
                         </li>
                         

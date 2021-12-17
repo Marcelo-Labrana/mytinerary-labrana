@@ -1,17 +1,25 @@
 import React from 'react'
+import {useEffect} from 'react'
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import usersActions from '../redux/actions/usersActions'
+import {connect } from 'react-redux'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function NavBar() {
+const NavBar = (props)=> {
 
     const signed = localStorage.getItem('token')
-
+    
     
     const signOut = () => {
-        localStorage.clear();
-        window.location.reload();
+        console.log(props)
+        props.signOut(true)
     }
+
+    useEffect(() => {
+        //console.log(props.user)
+    }, [props.user])
+
     return (
         <Navbar sticky="top" className="navbar-custom" variant="dark" expand="md">
             <Container className='align-content-md-center d-flex sm-m-1 justify-content-md-start'>
@@ -42,7 +50,7 @@ function NavBar() {
                                     {
                                         signed ?
                                             <>
-                                                <NavDropdown.Item onClick={()=>{signOut()}} as={Link} to="/">Sign Out</NavDropdown.Item>
+                                                <NavDropdown.Item onClick={()=>signOut()}>Sign Out</NavDropdown.Item>
                                             </> :
                                             <>
                                                 <NavDropdown.Item as={Link} to="/sign_in">Sign In</NavDropdown.Item>
@@ -61,4 +69,17 @@ function NavBar() {
     );
 }
 
-export default NavBar
+
+
+const mapStateToProps = (state)=>{
+    
+    return {
+        user: state.usersReducer.user
+    }
+}
+
+const mapDispatchToProps = {
+    signOut : usersActions.logOut
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(NavBar)

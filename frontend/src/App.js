@@ -6,11 +6,17 @@ import Error404 from './pages/Error404.js'
 import SignUp from './pages/SignUp.js'
 import SignIn from './pages/SignIn.js'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import {useEffect} from 'react'
+import {connect } from 'react-redux'
+
+const App = (props) => {
 
 
-const App = () => {
+  useEffect(() => {
+    console.log(props.user)
 
 
+  }, [props.user])
 
   return (
     <Router>
@@ -30,7 +36,7 @@ const App = () => {
           </>
         )}
 
-        
+
 
         <Route path="*" element={<Error404 />} />
 
@@ -41,4 +47,11 @@ const App = () => {
 
 }
 
-export default App;
+const mapStateToProps = (state)=>{
+    
+  return {
+      user: state.usersReducer.user
+  }
+}
+
+export default connect(mapStateToProps)(App);

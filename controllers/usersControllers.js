@@ -23,7 +23,7 @@ const usersControllers = {
         try {
             let repeatedUser = await User.findOne({ email: email })
             if (repeatedUser) {
-                //res.json({ success: false, error: [{message: "Email is already being used"}] })
+                res.json({ success: false, response: null, error: [{message: "Email is already being used"}] })
                 throw new Error("Email is already being used")
             }
             await newUser.save()
@@ -31,7 +31,7 @@ const usersControllers = {
             res.json({ success: true, response: {token, fname: newUser.fname, img: newUser.img}, error: null })
         } catch (error) {
             console.log(error.toString())
-            res.json({success:false, response:[{message: error}], error:[{message:error.toString()}] })
+            //res.json({success:false, response:[{message: error}], error:[{message:error.toString()}] })
         }
 
     },
@@ -43,18 +43,18 @@ const usersControllers = {
             let savedUser = await User.findOne({ email: email })
 
             if(savedUser.google && !google){
-                //res.json({ success: false, error: [{message: "Google accounts must be accessed via 'Sign in with Google' button"}] })
+                res.json({ success: false, response: null, error: [{message: "Google accounts must be accessed via 'Sign in with Google' button"}] })
                 throw new Error("Google accounts must be accessed via 'Sign in with Google' button")
             }
 
             if (!savedUser) {
-                //res.json({ success: false, error: [{message: "Incorrect email and/or password"}] })
+                res.json({ success: false, response:null, error: [{message: "Incorrect email and/or password"}] })
                 throw new Error("Incorrect email and/or password")
             }
 
             let match = bcrypt.compareSync(password, savedUser.password)
             if (!match) {
-                //res.json({ success: false, error: [{message: "Incorrect email and/or password"}] })
+                res.json({ success: false, response: null, error: [{message: "Incorrect email and/or password"}] })
                 throw new Error("Incorrect email and/or password")
             }
             const token = jwt.sign({...savedUser}, process.env.SECRET_KEY)
@@ -62,7 +62,7 @@ const usersControllers = {
             res.json({ success: true, response: { token, fname: savedUser.fname, img: savedUser.img }, error: null })
         } catch (error) {
             console.log(error)
-            res.json({success:false, response: [{message: error}], error: [{message: error.toString()}]})
+            //res.json({success:false, response: [{message: error}], error: [{message: error.toString()}]})
         }
     },
 

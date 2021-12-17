@@ -34,6 +34,15 @@ const usersActions = {
             }catch(error){console.error(error)}
         }
     },
+    logOut: (algo)=>{
+        if(algo)console.log("HOLA")
+        return async(dispatch, getState)=>{
+            try{localStorage.clear()
+            dispatch({type:'logOut', payload: {} })}
+            catch(error){console.error(error)}
+        }
+    },
+
     signUser: (email, password,google)=>{
         return async(dispatch,getState)=>{
             try{
@@ -50,12 +59,7 @@ const usersActions = {
             }catch(error){console.error(error)}
         }
     },
-    logOut: ()=>{
-        return (dispatch, getState)=>{
-            localStorage.clear()
-            dispatch({type:'logOut', payload: {} })
-        }
-    }
+    
     
 
     
