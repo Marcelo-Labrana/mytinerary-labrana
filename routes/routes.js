@@ -4,6 +4,7 @@ const cities12Controllers = require('../controllers/cities12Controllers')
 const itinerariesControllers = require('../controllers/itinerariesControllers')
 const usersControllers = require('../controllers/usersControllers')
 const validator = require('../config/validator.js')
+const passport = require('../config/passport.js')
 
 router.route('/cities')
 .get(citiesControllers.getCities)
@@ -27,15 +28,15 @@ router.route('/itinerary/:cityId')
 .get(itinerariesControllers.consultItineraries)
 
 router.route('/users')
-.get(usersControllers.getUsers)
 .post(validator,usersControllers.addUser)
 
 router.route('/users/sign_in')
-.get(usersControllers.getUsers)
 .post(usersControllers.signUser)
 
+router.route('/users/sign_in/token')
+.post(passport.authenticate('jwt',{session: false}), usersControllers.signToken )
+
 router.route('/users/:id')
-.get(usersControllers.getUserByID)
 .delete(usersControllers.deleteUser)
 .put(usersControllers.updateUser)
 

@@ -59,6 +59,14 @@ const usersActions = {
             }catch(error){console.error(error)}
         }
     },
+    signToken: (token)=>{
+        return async(dispatch, getState)=>{
+            try{
+                const signedUser = await axios.post('http://localhost:4000/api/users/sign_in/token',{},{headers:{'Authorization':'Bearer '+token}})
+                console.log(signedUser)
+            }catch(error){console.error(error)}
+        }
+    }
     
     
 

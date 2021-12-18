@@ -6,15 +6,7 @@ const jwt = require('jsonwebtoken')
 
 
 const usersControllers = {
-    getUsers: async (req, res) => {
-        let response
-        try {
-            response = await User.find()
-        } catch (err) {
-            console.error(err)
-        }
-        res.json(response)
-    },
+    
     addUser: async (req, res, next) => {
 
         const { fname, lname, email, password, img, country, google } = req.body
@@ -66,14 +58,6 @@ const usersControllers = {
         }
     },
 
-    getUserByID: async (req, res) => {
-        const id = req.params.id
-        let response
-        try {
-            response = await User.findOne({ _id: id })
-        } catch (err) { console.error(err) }
-        res.json(response)
-    },
     deleteUser: async (req, res) => {
         const id = req.params.id
         try {
@@ -91,7 +75,13 @@ const usersControllers = {
             response = await User.findOneAndUpdate({ _id: id }, { email, password, fname, lname, img, country }, { new: true })
         } catch (err) { console.error(err) }
         res.json(response)
+    },
+    signToken: (req,res)=>{
+        const {email, fname, img} = req.user//REQ.USER no req.body
+        console.log(req)
+        res.json({ success: true, response: { email, fname, img }, error: null })
     }
+    
 
 }
 

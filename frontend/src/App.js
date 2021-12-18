@@ -8,14 +8,13 @@ import SignIn from './pages/SignIn.js'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import {useEffect} from 'react'
 import {connect } from 'react-redux'
+import usersActions from './redux/actions/usersActions.js'
 
 const App = (props) => {
 
 
   useEffect(() => {
-    console.log(props.user)
-
-
+    props.signToken(localStorage.getItem('token'))
   }, [props.user])
 
   return (
@@ -47,6 +46,11 @@ const App = (props) => {
 
 }
 
+const mapDispatchToProps = {
+  signToken : usersActions.signToken
+  
+}
+
 const mapStateToProps = (state)=>{
     
   return {
@@ -54,4 +58,4 @@ const mapStateToProps = (state)=>{
   }
 }
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
