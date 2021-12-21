@@ -95,6 +95,8 @@ input:focus::placeholder {
 .profile-pic {
     max-width: 44px;
     max-height: 44px;
+    height: 44px;
+    width: 44px;
     border-radius: 100%;
 }
 
@@ -645,6 +647,8 @@ background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(140,140,140,1) 43%, rgb
     .profile-pic {
         min-width: 33px;
         min-height: 33px;
+        height: 33px;
+        width: 33px;
         border-radius: 100% 100%;
     }
     .collapse-patch {

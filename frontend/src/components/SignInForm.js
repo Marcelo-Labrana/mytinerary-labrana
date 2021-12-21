@@ -5,6 +5,9 @@ import usersActions from '../redux/actions/usersActions'
 import { GoogleLogin } from 'react-google-login';
 import {connect } from 'react-redux'
 import {Link} from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const SignInForm = (props) => {
 
@@ -45,7 +48,18 @@ const SignInForm = (props) => {
         const errors = await props.signUser(email,password,false)
         
         if (errors) {
-            errors.errors.map(e=> alert(e.message))
+            errors.errors.map(e=> 
+                //alert(e.message)
+                toast.warn(e.message, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    })
+            )
         }//else{window.location.reload();}
     }
     const handleSubmitInputs = (e) => {

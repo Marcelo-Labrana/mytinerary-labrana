@@ -8,17 +8,19 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const NavBar = (props)=> {
 
-    const signed = localStorage.getItem('token')
+    let signed = props.user
     
     
     const signOut = () => {
-        console.log(props)
+        //console.log(props)
         props.signOut(true)
     }
 
     useEffect(() => {
-        //console.log(props.user)
-    }, [props.user])
+        signed = props.user
+        if(localStorage.getItem('token') && !signed) props.signToken(localStorage.getItem('token'))
+        
+      }, [props.user])
 
     return (
         <Navbar sticky="top" className="navbar-custom" variant="dark" expand="md">
@@ -44,7 +46,7 @@ const NavBar = (props)=> {
                             <div className="justify-self-center ml-auto">
                                 <NavDropdown
                                     title={
-                                        <img src={signed?localStorage.getItem('image'):"/assets/default-user.png"} alt="default user" className="profile-pic" />
+                                        <img src={signed?props.user.response.img:"/assets/default-user.png"} alt="default user" className="profile-pic" />
 
                                     } id="basic-nav-dropdown">
                                     {
@@ -79,7 +81,8 @@ const mapStateToProps = (state)=>{
 }
 
 const mapDispatchToProps = {
-    signOut : usersActions.logOut
+    signOut : usersActions.logOut,
+    signToken : usersActions.signToken
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(NavBar)

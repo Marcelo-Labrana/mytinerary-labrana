@@ -5,6 +5,7 @@ import Carrousel from '../components/Carrousel.js'
 import Footer from '../components/Footer.js'
 import NavBar from '../components/NavBar'
 import { useLayoutEffect } from 'react'
+import { ToastContainer } from 'react-toastify';
 
 const Home = (props) => {
     useLayoutEffect(() => {
@@ -16,6 +17,7 @@ const Home = (props) => {
             <Banner/>
             <Carrousel/>
             <Footer/>
+            <ToastContainer/>
         </div>)
     
 }

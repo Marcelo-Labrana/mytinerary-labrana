@@ -35,7 +35,6 @@ const usersActions = {
         }
     },
     logOut: (algo)=>{
-        if(algo)console.log("HOLA")
         return async(dispatch, getState)=>{
             try{localStorage.clear()
             dispatch({type:'logOut', payload: {} })}
@@ -51,8 +50,8 @@ const usersActions = {
                 //console.log(signedUser.data)
                 if(signedUser.data.success && !signedUser.data.error) {
                     localStorage.setItem('token', signedUser.data.response.token)
-                    localStorage.setItem('name', signedUser.data.response.fname)
-                    localStorage.setItem('image', signedUser.data.response.img)
+                    //localStorage.setItem('name', signedUser.data.response.fname)
+                    //localStorage.setItem('image', signedUser.data.response.img)
                     dispatch({type: 'signUser', payload:signedUser.data})
                 }
                 else{return {errors: signedUser.data.error}}
@@ -63,8 +62,16 @@ const usersActions = {
         return async(dispatch, getState)=>{
             try{
                 const signedUser = await axios.post('http://localhost:4000/api/users/sign_in/token',{},{headers:{'Authorization':'Bearer '+token}})
-                console.log(signedUser)
-            }catch(error){console.error(error)}
+                //console.log(signedUser)
+                if(signedUser.data.success && !signedUser.data.error){
+                    console.log(signedUser)
+                    dispatch({type:'signUser', payload: signedUser.data})}
+                else throw new Error("Something went wrong with token authorization")
+                    
+            }catch(error){
+                localStorage.clear()
+                dispatch({type:'logOut', payload:{}})
+            }
         }
     }
     

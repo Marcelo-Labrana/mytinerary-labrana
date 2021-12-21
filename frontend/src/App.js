@@ -14,7 +14,7 @@ const App = (props) => {
 
 
   useEffect(() => {
-    props.signToken(localStorage.getItem('token'))
+    if(localStorage.getItem('token') && !props.user) props.signToken(localStorage.getItem('token'))
   }, [props.user])
 
   return (
@@ -26,7 +26,7 @@ const App = (props) => {
         <Route path="/cities" element={<Cities />} />
         <Route path="/cities/:city" element={<City />} />
 
-        {localStorage.getItem('token') ? (
+        {props.user ? (
           <Route path="*" element={<Home />} />
         ) : (
           <>

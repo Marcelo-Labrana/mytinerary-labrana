@@ -31,6 +31,11 @@ const usersReducer = (state = initialState, action) => {
             return{
                 ...initialState
             }
+        case 'signToken':
+            return{
+                ...state,
+                user: action.payload
+            }
        default:
            return state
    }

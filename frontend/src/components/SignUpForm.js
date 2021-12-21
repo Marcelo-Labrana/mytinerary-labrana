@@ -5,6 +5,9 @@ import usersActions from '../redux/actions/usersActions'
 import { connect } from 'react-redux'
 import { GoogleLogin } from 'react-google-login';
 import {Link} from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const SignUpForm = (props) => {
 
@@ -22,10 +25,31 @@ const SignUpForm = (props) => {
         const errors = await props.addUser(email, password, fname, lname, img, country,false)
         console.log(errors)
         if (errors) {
-            errors.map(e => alert(e.message))
+            errors.map(e => 
+                //alert(e.message)
+                toast.warn(e.message, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    })
+            )
             
         } else {
-            alert("Account created successfully")
+            toast.success("Account created successfully", {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                })
+            
+            //alert("Account created successfully")
             //window.location.reload();
         }
     }
@@ -61,17 +85,18 @@ const SignUpForm = (props) => {
             
              )
         .catch(()=>{
-            alert("Account created successfully")
+            toast.success("Account created successfully", {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                })
             //window.location.reload();
         })    
-            /*if (errores) {
-                console.log(errores)
-                errores.errors.map(e => alert(e.message))
-                
-            } else {
-                alert("Account created successfully")
-                window.location.reload();
-            }*/
+           
         
         
         
