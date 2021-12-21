@@ -20,6 +20,7 @@ module.exports = passport.use(new jwtStrategy(
                     return done(null, user)
                 } else {
                     console.log('Passednt')
+                    localStorage.clear()
                     return done(null, false)
                 }
             })

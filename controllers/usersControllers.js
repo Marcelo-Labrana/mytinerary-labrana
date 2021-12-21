@@ -34,14 +34,16 @@ const usersControllers = {
         try {
             let savedUser = await User.findOne({ email: email })
 
-            if(savedUser.google && !google){
-                res.json({ success: false, response: null, error: [{message: "Google accounts must be accessed via 'Sign in with Google' button"}] })
-                throw new Error("Google accounts must be accessed via 'Sign in with Google' button")
-            }
+            
 
             if (!savedUser) {
                 res.json({ success: false, response:null, error: [{message: "Incorrect email and/or password"}] })
                 throw new Error("Incorrect email and/or password")
+            }
+
+            if(savedUser.google && !google){
+                res.json({ success: false, response: null, error: [{message: "Google accounts must be accessed via 'Sign in with Google' button"}] })
+                throw new Error("Google accounts must be accessed via 'Sign in with Google' button")
             }
 
             let match = bcrypt.compareSync(password, savedUser.password)
@@ -53,7 +55,7 @@ const usersControllers = {
             
             res.json({ success: true, response: { token, fname: savedUser.fname, img: savedUser.img }, error: null })
         } catch (error) {
-            console.log(error)
+            console.error(error)
             //res.json({success:false, response: [{message: error}], error: [{message: error.toString()}]})
         }
     },
@@ -78,7 +80,7 @@ const usersControllers = {
     },
     signToken: (req,res)=>{
         const {email, fname, img} = req.user//REQ.USER no req.body
-        console.log(req)
+        
         res.json({ success: true, response: { email, fname, img }, error: null })
     }
     
