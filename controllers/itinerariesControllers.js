@@ -68,8 +68,8 @@ const itinerariesControllers = {
                 try {
                     response = await Itinerary.findOneAndUpdate({ _id: itineraryId }, { $push: { comments: { body: comment, user: _id, img: req.user.img } } }, {new:true}).populate('comments.user')
                     console.log(response)
-                    const algunawea = await Itinerary.find({ city: response.city })   
-                    res.json({success:true, response: algunawea})
+                    const something = await Itinerary.find({ city: response.city })   
+                    res.json({success:true, response: something})
                 } catch (err) {
                     console.log(err)
                     res.json({success:false, response:null})
@@ -80,8 +80,8 @@ const itinerariesControllers = {
                 try {
                     response = await Itinerary.findOneAndUpdate({ _id: itineraryId }, { $pull: { comments: { _id: comment, user: _id } } }, {new:true})
                     console.log(response)
-                    const algunawea = await Itinerary.find({ city: response.city })       
-                    res.json({success:true, response: algunawea})
+                    const something = await Itinerary.find({ city: response.city })       
+                    res.json({success:true, response: something})
                     
                 } catch (err) {
                     console.log(err)
@@ -91,8 +91,8 @@ const itinerariesControllers = {
             case "edit":
                 console.log("ID comment: "+req.body.commentId)
                 response = await Itinerary.findOneAndUpdate({ "comments._id": req.body.commentId }, { $set: { "comments.$.body":  comment  } }, {new:true})
-                const algunawea = await Itinerary.find({ city: response.city })
-                res.json({success:true, response: algunawea})
+                const something = await Itinerary.find({ city: response.city })
+                res.json({success:true, response: something})
                 break
 
         }
