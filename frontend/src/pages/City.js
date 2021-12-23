@@ -18,12 +18,14 @@ const City = (props) => {
 
     const cityId = useParams().city;
     const [likeId, setLike] = useState(null)
+    let logged = props.userToken
 
     useEffect(() => {
+        logged=props.userToken
         props.fetchCity(cityId)
         props.fetchItineraries(cityId)
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [props.userToken])
 
     /*const likeToggle = async (likeThing)=>{
         await props.like(likeThing, localStorage.getItem('token'))
@@ -63,7 +65,7 @@ const City = (props) => {
                         (props.itineraries && props.itineraries.length > 0) ?
                             props.itineraries.map(itinerary => {
                                 return (
-                                    <Itinerary key={itinerary._id} itinerary={itinerary} itineraries={props.itineraries}/>
+                                    <Itinerary key={itinerary._id} logged={logged} itinerary={itinerary} itineraries={props.itineraries}/>
                                 )
                             }) : <div className="construction"><p>There are no itineraries yet for this city</p></div>
 
@@ -91,7 +93,7 @@ const mapStateToProps = (state) => {
         city: state.citiesReducer.city,
         itineraries: state.cityReducer.itineraries,
         activities: state.activitiesReducer.activities,
-        userToken: state.usersReducer.signToken
+        userToken: state.usersReducer.userToken
     }
 }
 

@@ -106,22 +106,22 @@ const itinerariesControllers = {
 
         Itinerary.findOne({_id: itineraryId})
             .then((itinerary) =>{
-                console.log(itinerary)
+                
                 if(itinerary.likes && itinerary.likes.includes(_id)){
                    Itinerary.findOneAndUpdate({_id:itineraryId}, {$pull:{likes:_id}},{new:true})
                    .then(async (newItinerary)=> {
-                        console.log(newItinerary)
-                        const algunawea = await Itinerary.find({ city: newItinerary.city })
-                        res.json({success:true, response:algunawea})
+                        
+                        
+                        res.json({success:true, response:newItinerary})
                     
                     })
                    .catch((error) => console.log(error))
                 }else{
                     Itinerary.findOneAndUpdate({_id: itineraryId}, {$push:{likes:_id}},{new:true})
                     .then( async (newItinerary) => {
-                        console.log(newItinerary)
-                        const algunawea = await Itinerary.find({ city: newItinerary.city })
-                        res.json({success:true, response:algunawea})
+                        
+                        
+                        res.json({success:true, response:newItinerary})
                 })
                     .catch((error) => console.log(error))
                 }

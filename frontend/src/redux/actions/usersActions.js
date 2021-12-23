@@ -64,7 +64,7 @@ const usersActions = {
                 const signedUser = await axios.post('http://localhost:4000/api/users/sign_in/token',{},{headers:{'Authorization':'Bearer '+token}})
                 //console.log(signedUser)
                 if(signedUser.data.success && !signedUser.data.error){
-                    console.log(signedUser)
+                    
                     dispatch({type:'signToken', payload: signedUser.data})}
                 else throw new Error("Something went wrong with token authorization")
                     

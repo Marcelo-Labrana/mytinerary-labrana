@@ -34,7 +34,7 @@ const cityActions = {
     },
     like: (itineraryId, token)=>{
         return(async(dispatch, getState)=>{
-            console.log(itineraryId)
+            
             let response = await axios.put(`http://localhost:4000/api/itinerary/likes/${itineraryId}`, {}, {headers:{'Authorization':'Bearer '+token}})
             return response
         })

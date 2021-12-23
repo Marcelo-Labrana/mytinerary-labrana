@@ -6,11 +6,12 @@ import Activities from './Activties.js'
 import Comments from './Comments.js'
 import cityActions from '../redux/actions/cityActions.js'
 
-const Itinerary = ({itinerary, itineraries}) => {
-    
-    //console.log(itinerary)
 
-    const [itId, setItId] = useState('')
+const Itinerary = ({itinerary, itineraries, logged}) => {
+    
+    
+
+    const [cLikes, setLikes] = useState(itinerary.likes.length)
     const dispatch = useDispatch()
     
     useEffect(() => {
@@ -22,9 +23,9 @@ const Itinerary = ({itinerary, itineraries}) => {
     }, [itineraries])
 
     const likeToggle = async ()=>{
-        console.log(itinerary._id)
+        
         await dispatch(cityActions.like(itinerary._id, localStorage.getItem('token')) )
-        .then(res=>console.log(res))
+        .then(res=>setLikes(res.data.response.likes.length))
         .catch(error=>console.log(error))
 
     }
@@ -47,10 +48,10 @@ const Itinerary = ({itinerary, itineraries}) => {
                                                 </Card.Text>
                                                 <Card.Text>Duration: {"⌛".repeat(itinerary.duration)}</Card.Text>
                                                 <Card.Text >
-                                                {console.log(itinerary._id)}
+                                                
                                                 <input type="checkbox" onClick={likeToggle}
-                                                    className="toggle-visibility" id={itinerary._id}/> 
-                                                <label htmlFor={itinerary._id} /> {itinerary.likes.length}
+                                                    className="toggle-like" id={itinerary._id}  disabled={logged?false:true}/> 
+                                                <label htmlFor={itinerary._id} /> {cLikes}
                                                 </Card.Text>
                                                 
                                             </Card.Body>
@@ -74,5 +75,7 @@ const Itinerary = ({itinerary, itineraries}) => {
                                     </Col>
     )
 }
+
+
 
 export default Itinerary

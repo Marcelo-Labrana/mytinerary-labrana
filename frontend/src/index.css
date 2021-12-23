@@ -723,6 +723,35 @@ background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(140,140,140,1) 43%, rgb
     width: 100% !important;
 }
 
+.toggle-like {
+    display: none;
+    width: 20px;
+    height: 20px;
+}
+
+.toggle-like + label{
+    background: url('../src/assets/like.png') no-repeat;
+    filter:grayscale(1);
+    background-size:cover;
+    height: 20px;
+    width: 20px;
+    display:inline-flex;
+    padding: 0 0 0 0px;
+    align-self: flex-end;
+    margin-left: 1vw;
+    transition-duration: 0.5s;
+}
+.toggle-like:checked + label{
+    background-image: url('../src/assets/like.png') no-repeat;
+    filter: grayscale(0);
+    background-size:cover;
+    height: 20px;
+    width: 20px;
+    display:inline-flex;
+    padding: 0 0 0 0px;
+    align-self: flex-end;
+    margin-left: 1vw;
+}
 
 
 /*MEDIAQUERY*/
