@@ -1,5 +1,6 @@
 const initialState = {
-    itineraries : null
+    itineraries : null,
+    commentsFlag: false
 }
 
 const cityReducer = (state = initialState, action) => {
@@ -9,6 +10,11 @@ const cityReducer = (state = initialState, action) => {
                ...state,
                itineraries: action.payload
            }
+        case 'comments':
+            return {
+                ...initialState,
+                commentsFlag: true
+            }
        default:
            return state
    }

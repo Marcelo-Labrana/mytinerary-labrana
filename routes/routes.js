@@ -3,6 +3,7 @@ const citiesControllers = require('../controllers/citiesControllers')
 const cities12Controllers = require('../controllers/cities12Controllers')
 const itinerariesControllers = require('../controllers/itinerariesControllers')
 const usersControllers = require('../controllers/usersControllers')
+const activitiesControllers = require('../controllers/activitiesControllers')
 const validator = require('../config/validator.js')
 const passport = require('../config/passport.js')
 
@@ -40,6 +41,18 @@ router.route('/users/:id')
 .delete(usersControllers.deleteUser)
 .put(usersControllers.updateUser)
 
+router.route('/activities')
+.get(activitiesControllers.getActivities)
+.post(activitiesControllers.addActivity)
+
+router.route('/activities/:id')
+.get(activitiesControllers.consultActivities)
+.delete(activitiesControllers.deleteActivity)
+.put(activitiesControllers.updateActivity)
+
+
+router.route('/itinerary/comments/:itineraryId')
+.put(itinerariesControllers.comments)
 
 router.route('/cities12')
 .get(cities12Controllers.getCities12)

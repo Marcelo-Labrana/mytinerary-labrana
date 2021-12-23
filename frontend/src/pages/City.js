@@ -8,6 +8,9 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import cityActions from '../redux/actions/cityActions.js'
 import citiesActions from '../redux/actions/citiesActions.js'
+import activitiesActions from '../redux/actions/activitiesActions'
+import Activities from '../components/Activties.js'
+import Comments from '../components/Comments.js'
 
 
 const City = (props) => {
@@ -26,7 +29,7 @@ const City = (props) => {
     return (
         <>
 
-            <div className="cucu">
+            <div className="cucu cucu-patch">
 
                 <NavBar />
                 <div className="wrapper">
@@ -34,46 +37,50 @@ const City = (props) => {
                     {
                         (props.city) &&
                         <Col xs={12} className="d-flex justify-content-center">
-                            <Card className="custom-card-cities align-self-center justify-self-center">
+                            <Card className="custom-card-cities align-self-center justify-self-center itinerary-wrapper">
                                 <Card.Img className="img-city" variant="top" src={props.city.img} />
                                 <Card.Body>
                                     <Card.Title>{props.city.city}, {props.city.country}</Card.Title>
                                 </Card.Body>
                             </Card>
                         </Col>}
-                    {console.log(props.itineraries)}
+                    
                     {
-                        (props.itineraries&&props.itineraries.length>0) ?
-                        props.itineraries.map(itinerary => {
-                            return (
-                                <Col xs={12} className="d-flex justify-content-center" key={itinerary._id}>
-                                    <Card className="text-center city-card">
-                                        <Card.Header className="d-flex flex-column justify-content-center align-content-center align-items-center"><img className="user-img" src={itinerary.user.img} alt="user" />{itinerary.user.name}</Card.Header>
-                                        <Card.Body>
-                                            <Card.Text>
-                                                Price: {
-                                                    "💵".repeat(itinerary.price)
-                                                }
-                                            </Card.Text>
-                                            <Card.Text>Duration: {"⌛".repeat(itinerary.duration)}</Card.Text>
-                                            <Card.Text>Likes: {itinerary.likes}</Card.Text>
+                        (props.itineraries && props.itineraries.length > 0) ?
+                            props.itineraries.map(itinerary => {
+                                return (
+                                    <Col className="d-flex justify-content-center itinerary-wrapper" key={itinerary._id}>
+                                        <Card className="text-center city-card itinerary-wrapper">
+                                            <Card.Header className="d-flex flex-column justify-content-center align-content-center align-items-center"><img className="user-img" src={itinerary.user.img} alt="user" />{itinerary.user.name}</Card.Header>
+                                            <Card.Body>
+                                                <Card.Text>
+                                                    Price: {
+                                                        "💵".repeat(itinerary.price)
+                                                    }
+                                                </Card.Text>
+                                                <Card.Text>Duration: {"⌛".repeat(itinerary.duration)}</Card.Text>
+                                                <Card.Text>Likes: {itinerary.likes}</Card.Text>
 
-                                        </Card.Body>
-                                        <Card.Footer className="text-muted">{
-                                            itinerary.hashtags.map(hashtag => { return hashtag })
-                                        }</Card.Footer>
-                                        <Accordion>
-                                            <Accordion.Item eventKey="0">
-                                                <Accordion.Header className="text-center">View More</Accordion.Header>
-                                                <Accordion.Body className="text-center">
-                                                    Under Construction
-                                                </Accordion.Body>
-                                            </Accordion.Item>
-                                        </Accordion>
-                                    </Card>
-                                </Col>
-                            )
-                        }):<div className="construction"><p>There are no itineraries yet for this city</p></div>
+                                            </Card.Body>
+                                            <Card.Footer className="text-muted hashtag">{
+                                                itinerary.hashtags.map((hashtag,index) => { return <p style={{display:'inline'}} key={index}>{hashtag}</p> })
+                                            }</Card.Footer>
+                                            <Accordion>
+                                                <Accordion.Item eventKey="0">
+                                                    <Accordion.Header className="text-center">View More</Accordion.Header>
+                                                    <Accordion.Body className="text-center">
+
+                                                        
+                                                            <Activities itineraryId={itinerary._id}/>
+                                                            <Comments itineraryId={itinerary._id}/>  
+                                                                                                                  
+                                                    </Accordion.Body>
+                                                </Accordion.Item>
+                                            </Accordion>
+                                        </Card>
+                                    </Col>
+                                )
+                            }) : <div className="construction"><p>There are no itineraries yet for this city</p></div>
 
                     }
 
@@ -89,13 +96,15 @@ const City = (props) => {
 
 const mapDispatchToProps = {
     fetchCity: citiesActions.fetchCity,
-    fetchItineraries: cityActions.fetchItineraries
+    fetchItineraries: cityActions.fetchItineraries,
+    fetchActivities: activitiesActions.fetchActivities
 }
 const mapStateToProps = (state) => {
 
     return {
         city: state.citiesReducer.city,
-        itineraries: state.cityReducer.itineraries
+        itineraries: state.cityReducer.itineraries,
+        activities: state.activitiesReducer.activities
     }
 }
 
