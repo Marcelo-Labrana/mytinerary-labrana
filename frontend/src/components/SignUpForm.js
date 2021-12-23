@@ -63,7 +63,7 @@ const SignUpForm = (props) => {
         }
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [props.user])
+    }, [props.userToken])
 
     const responseGoogle = (response) => {
         //console.log(response);
@@ -78,13 +78,22 @@ const SignUpForm = (props) => {
         }
         //console.log(googleUser)
         const errors = props.addUser(googleUser.email, googleUser.password, googleUser.fname, googleUser.lname, googleUser.img, googleUser.country, googleUser.google)
-        .then(res=>{
-                res.map(e => alert(e.message))
-        }
-            
-             )
-        .then(res=>props.signToken(localStorage.getItem('token')) )
+        .then(res=>{res.map(e => 
+            toast.warn(e.message, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                })
+            ) 
+        
+        })
         .catch(()=>{
+           
+            props.signToken(localStorage.getItem('token'))
             toast.success("Account created successfully", {
                 position: "top-center",
                 autoClose: 5000,
@@ -93,8 +102,7 @@ const SignUpForm = (props) => {
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
-                })
-            //window.location.reload();
+                }) 
         })    
            
         
@@ -187,6 +195,7 @@ const SignUpForm = (props) => {
                 </fieldset>
                 <p className="cta-text">Already have an account? <Link to={"/sign_in"}><b className="cta">sign in here</b></Link></p>
             </form>
+            <ToastContainer/>
 
 
         </>
@@ -204,7 +213,8 @@ const mapStateToProps = (state) => {
 
     return {
         users: state.usersReducer.users,
-        user: state.usersReducer.user
+        user: state.usersReducer.user,
+        userToken: state.usersReducer.userToken
     }
 }
 
