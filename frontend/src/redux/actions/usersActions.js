@@ -26,8 +26,8 @@ const usersActions = {
                 if(user.data.success && !user.data.error){
                     
                     localStorage.setItem('token', user.data.response.token)
-                    localStorage.setItem('name', user.data.response.fname)
-                    localStorage.setItem('image', user.data.response.img)
+                    //localStorage.setItem('name', user.data.response.fname)
+                    //localStorage.setItem('image', user.data.response.img)
                     dispatch({type: 'addUser', payload:user.data})}
                 else{return user.data.error}
                 
@@ -65,7 +65,7 @@ const usersActions = {
                 //console.log(signedUser)
                 if(signedUser.data.success && !signedUser.data.error){
                     console.log(signedUser)
-                    dispatch({type:'signUser', payload: signedUser.data})}
+                    dispatch({type:'signToken', payload: signedUser.data})}
                 else throw new Error("Something went wrong with token authorization")
                     
             }catch(error){

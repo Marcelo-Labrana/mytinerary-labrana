@@ -79,9 +79,9 @@ const usersControllers = {
         res.json(response)
     },
     signToken: (req,res)=>{
-        const {email, fname, img} = req.user//REQ.USER no req.body
-        
-        res.json({ success: true, response: { email, fname, img }, error: null })
+        const {email, fname, img, _id} = req.user//REQ.USER no req.body
+        console.log(_id)
+        res.json({ success: true, response: { email, fname, img, _id }, error: null })
     }
     
 

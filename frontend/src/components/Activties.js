@@ -27,9 +27,9 @@ const Activities = (props) => {
                             return (
                                 <Carousel.Item key={activity._id}>
                                     <Card style={{ width: '100%' }}>
-                                        <Card.Img variant="top" src="/assets/frock.jpg" />
+                                        <Card.Img variant="top" src={activity.img} />
                                         <Card.Body>
-                                            <Card.Title>Card Title</Card.Title>
+                                            <Card.Title>{activity.tittle}</Card.Title>
                                         </Card.Body>
                                     </Card>
                                 </Carousel.Item>

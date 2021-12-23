@@ -52,7 +52,11 @@ router.route('/activities/:id')
 
 
 router.route('/itinerary/comments/:itineraryId')
-.put(itinerariesControllers.comments)
+.put(passport.authenticate('jwt',{session: false}),itinerariesControllers.comments)
+
+router.route('/itinerary/likes/:itineraryId')
+.put(passport.authenticate('jwt',{session: false}), itinerariesControllers.likes)
+
 
 router.route('/cities12')
 .get(cities12Controllers.getCities12)

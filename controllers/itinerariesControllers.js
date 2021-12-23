@@ -55,18 +55,21 @@ const itinerariesControllers = {
         res.json(response)
     },
     comments: async (req, res) => {
-        console.log(req.params)
+        //console.log(req.params)
         const { type, comment } = req.body
         const { itineraryId } = req.params
+        const {_id} = req.user
+        console.log(_id)
         //const {_id} = req.user
         let response
         switch (type) {
             case "add":
 
                 try {
-                    response = await Itinerary.updateOne({ _id: itineraryId }, { $push: { comments: { body: comment, user: "61ad7bd2eec835eea17697d6" } } })
-                    
-                    res.json({ success: true, response: response })
+                    response = await Itinerary.findOneAndUpdate({ _id: itineraryId }, { $push: { comments: { body: comment, user: _id, img: req.user.img } } }, {new:true}).populate('comments.user')
+                    console.log(response)
+                    const algunawea = await Itinerary.find({ city: response.city })   
+                    res.json({success:true, response: algunawea})
                 } catch (err) {
                     console.log(err)
                     res.json({success:false, response:null})
@@ -75,8 +78,11 @@ const itinerariesControllers = {
 
             case "delete":
                 try {
-                    response = await Itinerary.findOneAndUpdate({ _id: itineraryId }, { $pull: { comments: { _id: comment, user: "61ad7bd2eec835eea17697d6" } } }, {new:true})
-                    res.json({success:true, response: response})
+                    response = await Itinerary.findOneAndUpdate({ _id: itineraryId }, { $pull: { comments: { _id: comment, user: _id } } }, {new:true})
+                    console.log(response)
+                    const algunawea = await Itinerary.find({ city: response.city })       
+                    res.json({success:true, response: algunawea})
+                    
                 } catch (err) {
                     console.log(err)
                     res.json({success:false, response:null})
@@ -84,13 +90,45 @@ const itinerariesControllers = {
                 break
             case "edit":
                 console.log("ID comment: "+req.body.commentId)
-                response = await Itinerary.updateOne({ "comments._id": req.body.commentId }, { $set: { "comments.$.body":  comment  } })
-                res.json({success:true, response: response})
+                response = await Itinerary.findOneAndUpdate({ "comments._id": req.body.commentId }, { $set: { "comments.$.body":  comment  } }, {new:true})
+                const algunawea = await Itinerary.find({ city: response.city })
+                res.json({success:true, response: algunawea})
                 break
 
         }
 
-    }
+    },
+    likes: async (req,res)=>{
+        const { itineraryId } = req.params
+        const {_id} = req.user
+
+        
+
+        Itinerary.findOne({_id: itineraryId})
+            .then((itinerary) =>{
+                console.log(itinerary)
+                if(itinerary.likes && itinerary.likes.includes(_id)){
+                   Itinerary.findOneAndUpdate({_id:itineraryId}, {$pull:{likes:_id}},{new:true})
+                   .then(async (newItinerary)=> {
+                        console.log(newItinerary)
+                        const algunawea = await Itinerary.find({ city: newItinerary.city })
+                        res.json({success:true, response:algunawea})
+                    
+                    })
+                   .catch((error) => console.log(error))
+                }else{
+                    Itinerary.findOneAndUpdate({_id: itineraryId}, {$push:{likes:_id}},{new:true})
+                    .then( async (newItinerary) => {
+                        console.log(newItinerary)
+                        const algunawea = await Itinerary.find({ city: newItinerary.city })
+                        res.json({success:true, response:algunawea})
+                })
+                    .catch((error) => console.log(error))
+                }
+            })
+            .catch((error) => res.json({success:false, response:error}))
+        }
+    
 
 }
 

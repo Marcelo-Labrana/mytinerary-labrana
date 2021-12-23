@@ -23,7 +23,7 @@ const SignUpForm = (props) => {
 
     const handleSubmit = async (fname, lname, email, password, img, country) => {
         const errors = await props.addUser(email, password, fname, lname, img, country,false)
-        console.log(errors)
+        .then(res=>props.signToken(localStorage.getItem('token')) )
         if (errors) {
             errors.map(e => 
                 //alert(e.message)
@@ -37,7 +37,6 @@ const SignUpForm = (props) => {
                     progress: undefined,
                     })
             )
-            
         } else {
             toast.success("Account created successfully", {
                 position: "top-center",
@@ -84,6 +83,7 @@ const SignUpForm = (props) => {
         }
             
              )
+        .then(res=>props.signToken(localStorage.getItem('token')) )
         .catch(()=>{
             toast.success("Account created successfully", {
                 position: "top-center",
@@ -116,6 +116,7 @@ const SignUpForm = (props) => {
     const handleSubmitInputs = (e) => {
         e.preventDefault()
         handleSubmit(inputFName.current.value, inputLName.current.value, inputEmail.current.value, inputPassword.current.value, inputImg.current.value, inputCountry.current.value)
+
         inputFName.current.value = ''
         inputLName.current.value = ''
         inputEmail.current.value = ''
@@ -196,7 +197,8 @@ const SignUpForm = (props) => {
 }
 
 const mapDispatchToProps = {
-    addUser: usersActions.addUser
+    addUser: usersActions.addUser,
+    signToken: usersActions.signToken
 }
 const mapStateToProps = (state) => {
 

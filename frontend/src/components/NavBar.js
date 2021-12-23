@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const NavBar = (props)=> {
 
-    let signed = props.user
+    let signed = props.userToken
     
     
     const signOut = () => {
@@ -17,10 +17,10 @@ const NavBar = (props)=> {
     }
 
     useEffect(() => {
-        signed = props.user
+        signed = props.userToken
         if(localStorage.getItem('token') && !signed) props.signToken(localStorage.getItem('token'))
         
-      }, [props.user])
+      }, [props.userToken])
 
     return (
         <Navbar sticky="top" className="navbar-custom" variant="dark" expand="md">
@@ -46,7 +46,7 @@ const NavBar = (props)=> {
                             <div className="justify-self-center ml-auto">
                                 <NavDropdown
                                     title={
-                                        <img src={signed?props.user.response.img:"/assets/default-user.png"} alt="default user" className="profile-pic" />
+                                        <img src={signed?props.userToken.response.img:"/assets/default-user.png"} alt="default user" className="profile-pic" />
 
                                     } id="basic-nav-dropdown">
                                     {
@@ -76,7 +76,8 @@ const NavBar = (props)=> {
 const mapStateToProps = (state)=>{
     
     return {
-        user: state.usersReducer.user
+        user: state.usersReducer.user,
+        userToken: state.usersReducer.userToken
     }
 }
 

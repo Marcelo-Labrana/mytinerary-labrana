@@ -9,26 +9,34 @@ const cityActions = {
             //.then(res=>dispatch({type: "fetch", payload:res.data.response}))
         })
     },
-    addComment: (itineraryId, comment)=>{
+    addComment: (itineraryId, comment, token)=>{
         return(async(dispatch,getState)=>{
-            let response = await axios.put(`http://localhost:4000/api/itinerary/comments/${itineraryId}`, {type: "add", comment: comment})
-            dispatch({type:"comments", payload: true})
-
+            let response = await axios.put(`http://localhost:4000/api/itinerary/comments/${itineraryId}`, {type: "add", comment: comment}, {headers:{'Authorization':'Bearer '+token}})
+            dispatch({type:"fetchItineraries", payload: response.data.response})
+            return response
         })
 
     },
-    deleteComment: (itineraryId, commentId)=>{
+    deleteComment: (itineraryId, commentId,token)=>{
         return(async(dispatch,getState)=>{
-            let response = await axios.put(`http://localhost:4000/api/itinerary/comments/${itineraryId}`, {type: "delete", comment: commentId})
-            dispatch({type:"comments", payload: true})
+            let response = await axios.put(`http://localhost:4000/api/itinerary/comments/${itineraryId}`, {type: "delete", comment: commentId}, {headers:{'Authorization':'Bearer '+token}})
+            dispatch({type:"fetchItineraries", payload: response.data.response})
             return response
 
         })
     },
-    editComment: (itineraryId, comment, commentId)=>{
+    editComment: (itineraryId, comment, commentId, token)=>{
         return(async(dispatch, getState)=>{
-            let response = await axios.put(`http://localhost:4000/api/itinerary/comments/${itineraryId}`, {type: 'edit', comment: comment, commentId: commentId})
-            dispatch({type:"comments", payload: true})
+            let response = await axios.put(`http://localhost:4000/api/itinerary/comments/${itineraryId}`, {type: 'edit', comment: comment, commentId: commentId}, {headers:{'Authorization':'Bearer '+token}})
+            dispatch({type:"fetchItineraries", payload: response.data.response})
+            return response
+        })
+    },
+    like: (itineraryId, token)=>{
+        return(async(dispatch, getState)=>{
+            console.log(itineraryId)
+            let response = await axios.put(`http://localhost:4000/api/itinerary/likes/${itineraryId}`, {}, {headers:{'Authorization':'Bearer '+token}})
+            return response
         })
     }
     

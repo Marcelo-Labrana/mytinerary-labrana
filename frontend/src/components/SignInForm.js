@@ -18,7 +18,6 @@ const SignInForm = (props) => {
     useEffect(() => {
         console.log(props.user)
         
-        
     }, [props.user])
 
     const responseGoogle = (response) => {
@@ -33,7 +32,7 @@ const SignInForm = (props) => {
             google:true
         }
         props.signUser(googleUser.email, googleUser.password, googleUser.google)
-        .then(res=>console.log(res))
+        .then(res=>props.signToken(localStorage.getItem('token')))
         .catch(error=>console.error(error))
         
       }
@@ -46,7 +45,9 @@ const SignInForm = (props) => {
         
         if(!email||!password){alert("Please, enter user and password to sign in")}
         const errors = await props.signUser(email,password,false)
-        
+        .then(res=>props.signToken(localStorage.getItem('token')) )
+        .catch(err=>console.error(err))
+
         if (errors) {
             errors.errors.map(e=> 
                 //alert(e.message)
@@ -64,7 +65,6 @@ const SignInForm = (props) => {
     }
     const handleSubmitInputs = (e) => {
         e.preventDefault()
-        //console.log(inputEmail.current.value, inputPassword.current.value)
         handleSubmit(inputEmail.current.value, inputPassword.current.value)
         inputEmail.current.value = ''
         inputPassword.current.value = ''
@@ -89,7 +89,7 @@ const SignInForm = (props) => {
                             <div className="password">
                                 <label htmlFor="pw">PASSWORD</label>
 
-                                <input type="checkbox" onClick={toggleVisibility} className="toggle-visibility" id="eye" name="toggleVisibility" />
+                                <input type="button" onClick={toggleVisibility} className="toggle-visibility" id="eye" name="toggleVisibility" />
                                 <OverlayTrigger
                                     placement="right"
                                     delay={{ show: 250, hide: 250 }}
@@ -124,8 +124,8 @@ const SignInForm = (props) => {
 }
 
 const mapDispatchToProps = {
-    signUser : usersActions.signUser
-    
+    signUser : usersActions.signUser,
+    signToken : usersActions.signToken
 }
 const mapStateToProps = (state)=>{
     

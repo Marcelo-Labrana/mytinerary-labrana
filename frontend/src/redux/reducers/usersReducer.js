@@ -1,6 +1,7 @@
 const initialState = {
     users : [],
-    user: null
+    user: null,
+    userToken: null
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -28,13 +29,14 @@ const usersReducer = (state = initialState, action) => {
                 user: action.payload
             }
         case 'logOut':
+            localStorage.clear()
             return{
-                ...initialState
+                ...initialState,
             }
         case 'signToken':
             return{
                 ...state,
-                user: action.payload
+                userToken: action.payload
             }
        default:
            return state

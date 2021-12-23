@@ -10,12 +10,13 @@ import {useEffect} from 'react'
 import {connect } from 'react-redux'
 import usersActions from './redux/actions/usersActions.js'
 
+
 const App = (props) => {
 
 
   useEffect(() => {
-    if(localStorage.getItem('token') && !props.user) props.signToken(localStorage.getItem('token'))
-  }, [props.user])
+    if(localStorage.getItem('token') && !props.userToken) props.signToken(localStorage.getItem('token'))
+  }, [])
 
   return (
     <Router>
@@ -26,7 +27,7 @@ const App = (props) => {
         <Route path="/cities" element={<Cities />} />
         <Route path="/cities/:city" element={<City />} />
 
-        {props.user ? (
+        {props.userToken ? (
           <Route path="*" element={<Home />} />
         ) : (
           <>
@@ -54,7 +55,8 @@ const mapDispatchToProps = {
 const mapStateToProps = (state)=>{
     
   return {
-      user: state.usersReducer.user
+      user: state.usersReducer.user,
+      userToken: state.usersReducer.userToken
   }
 }
 
